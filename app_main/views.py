@@ -28,6 +28,10 @@ class ContactView(TemplateView):
         return context
 
 
+class ProductListView(TemplateView):
+    template_name = "app_main/products.html"
+
+
 class ProductView(TemplateView):
     template_name = "app_main/product.html"
 
