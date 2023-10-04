@@ -49,18 +49,17 @@ class="footer-bg flex w-full flex-col items-center justify-center bg-neutral-900
   <div class="my-8 h-px bg-neutral-700"></div>
 
   <div class="mb-8 grid w-full gap-16 md:mb-16 lg:grid-cols-9 lg:gap-0">
+    {% if footer %}
     <div class="flex flex-col items-center md:items-start lg:col-span-4">
       <p
         class="mb-7 max-w-md text-center text-sm leading-relaxed text-white md:max-w-none md:text-left lg:text-justify"
       >
-        Gemotex is a globally recognized leader in garments procurement,
-        renowned for delivering efficient, quality-driven solutions to
-        businesses within the fashion industry.
+        {{ footer.details }}
       </p>
       <ul class="flex gap-5 text-xl">
         <li>
           <a
-            href="#"
+            href="{% if  footer.facebook_link %}{{ footer.facebook_link }}{% else %}#{% endif %}"
             class="grid aspect-square w-8 place-items-center rounded-full bg-white text-neutral-500"
           >
             <i class="ti ti-brand-facebook"></i>
@@ -68,15 +67,15 @@ class="footer-bg flex w-full flex-col items-center justify-center bg-neutral-900
         </li>
         <li>
           <a
-            href="#"
+            href="{% if  footer.instagram_link %}{{ footer.instagram_link }}{% else %}#{% endif %}"
             class="grid aspect-square w-8 place-items-center rounded-full bg-white text-neutral-500"
           >
-            <i class="ti ti-brand-linkedin"></i>
+            <i class="ti ti-brand-instagram"></i>
           </a>
         </li>
         <li>
           <a
-            href="#"
+            href="{% if  footer.twitter_link %}{{ footer.twitter_link }}{% else %}#{% endif %}"
             class="grid aspect-square w-8 place-items-center rounded-full bg-white text-neutral-500"
           >
             <i class="ti ti-brand-twitter"></i>
@@ -84,7 +83,7 @@ class="footer-bg flex w-full flex-col items-center justify-center bg-neutral-900
         </li>
         <li>
           <a
-            href="#"
+            href="{% if  footer.youtube_link %}{{ footer.youtube_link }}{% else %}#{% endif %}"
             class="grid aspect-square w-8 place-items-center rounded-full bg-white text-neutral-500"
           >
             <i class="ti ti-brand-youtube"></i>
@@ -92,6 +91,7 @@ class="footer-bg flex w-full flex-col items-center justify-center bg-neutral-900
         </li>
       </ul>
     </div>
+    {% endif %}
 
     <div
       class="flex w-full flex-wrap justify-center gap-4 md:gap-10 lg:col-span-5 lg:pl-10 xl:pl-16"
@@ -122,7 +122,7 @@ class="footer-bg flex w-full flex-col items-center justify-center bg-neutral-900
         <div class="flex flex-col gap-3 text-[0.8rem] md:text-sm">
           <a href="#" class="flex items-center gap-4">
             <i class="ti ti-map-pin-filled text-[1.25em]"></i>
-            <span>{{ contact.adress }}</span>
+            <span>{{ contact.address }}</span>
           </a>
           <a href="#" class="flex items-center gap-4">
             <i class="ti ti-phone-call text-[1.25em]"></i>

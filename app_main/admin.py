@@ -17,4 +17,22 @@ class ContactInformationAdmin(admin.ModelAdmin):
             return True
 
 
-admin.site.register(ContactInformation, ContactInformationAdmin)
+admin.site.register(ContactInformationModel, ContactInformationAdmin)
+
+
+class FooterInformationAdmin(admin.ModelAdmin):
+    # only create one object
+    def has_add_permission(self, request):
+        num_objects = self.model.objects.count()
+        if num_objects >= 1:
+            return False
+        else:
+            return True
+
+
+admin.site.register(FooterInformationModel, FooterInformationAdmin)
+
+admin.site.register(ProductCategoryModel)
+admin.site.register(ProductSubcategoryModel)
+admin.site.register(ProductModel)
+admin.site.register(ProductImagesModel)

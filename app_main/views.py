@@ -1,18 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from app_main.models import ContactInformation
+from app_main.models import ContactInformationModel, FooterInformationModel
 
 # Create your views here.
 
 
 class IndexView(TemplateView):
     template_name = "app_main/index.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["contact"] = ContactInformation.objects.all().last()
-        return context
 
 
 class AboutView(TemplateView):
@@ -24,7 +19,7 @@ class ContactView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["contact"] = ContactInformation.objects.all().last()
+        context["contact"] = ContactInformationModel.objects.all().last()
         return context
 
 
