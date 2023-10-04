@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %}GemoTex</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&family=Permanent+Marker&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    {% block head_css %}{% endblock head_css %}
+    {% block head_js %}{% endblock head_js %}
+
+  </head>
+
+  <body class="bg-neutral-100">
+    
+    {% include 'components/nav.html' %}
+
+    <main class="w-full">
+        {% block main_content %} {% endblock main_content %}
+    </main>
+
+    {% include 'components/footer.html' %}
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // Cache the elements to improve efficiency
+      const $menuToggleBtns = $(".menu-toggle-btn");
+
+      $menuToggleBtns.on("click", function () {
+        const $dropdownEl = $(this).parent();
+        const strategy = $dropdownEl.css("--strategy") || "static";
+
+        if (strategy.trim() !== "static") return;
+
+        // Toggle the class directly without using .next()
+        $(this).next("ul").toggleClass("menu-open");
+      });
+
+      $(".nav-toggle-btn").on("click", function () {
+        $("#navbar").toggleClass("nav-open");
+      });
+    </script>
+    
+    <script>
+      const progressCircle = document.querySelector(".autoplay-progress svg");
+      const progressContent = document.querySelector(".autoplay-progress span");
+      var swiper = new Swiper(".header-slider", {
+        centeredSlides: true,
+        // autoplay: {
+        //   delay: 4000,
+        //   disableOnInteraction: false,
+        // },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        keyboard: true,
+        on: {
+          autoplayTimeLeft(s, time, progress) {
+            progressCircle.style.setProperty("--progress", 1 - progress);
+            progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+          },
+        },
+      });
+    </script>
+
+    
+    <script>
+      var swiper = new Swiper(".testimonial-slider", {
+        centeredSlides: true,
+        // autoplay: {
+        //   delay: 4000,
+        //   disableOnInteraction: false,
+        // },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        keyboard: true,
+      });
+    </script>
+
+    {% block script %} {% endblock script %}
+
+  </body>
+</html>

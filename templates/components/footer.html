@@ -1,0 +1,146 @@
+{% load static %}
+<footer
+class="footer-bg flex w-full flex-col items-center justify-center bg-neutral-900 text-white"
+>
+<div class="container">
+  <div
+    class="mt-8 grid grid-cols-1 items-center gap-8 md:mt-16 md:grid-cols-2 md:gap-4 lg:grid-cols-4"
+  >
+    <a class="font-perker text-5xl" href="#">Gemotex</a>
+
+    <!-- item-1 -->
+    <div class="flex items-center gap-8">
+      <img
+        src="{% static 'images/box-white.png' %}"
+        width="62"
+        height="62"
+        alt=""
+      />
+      <h5 class="font-semibold uppercase">
+        FREE SHIPPING & RETURN POLICY
+      </h5>
+    </div>
+
+    <!-- item-2 -->
+    <div class="flex items-center gap-8">
+      <img
+        src="{% static 'images/headphone-white.png' %}"
+        width="62"
+        height="62"
+        alt=""
+      />
+      <h5 class="font-semibold uppercase">90-DAY WARRANTY</h5>
+    </div>
+
+    <!-- item-3 -->
+    <div class="flex items-center gap-8">
+      <img
+        src="{% static 'images/history-white.png' %}"
+        width="62"
+        height="62"
+        alt=""
+      />
+      <h5 class="font-semibold uppercase">
+        NEW PRODUCT OFFERINGS & DEALS
+      </h5>
+    </div>
+  </div>
+
+  <div class="my-8 h-px bg-neutral-700"></div>
+
+  <div class="mb-8 grid w-full gap-16 md:mb-16 lg:grid-cols-9 lg:gap-0">
+    <div class="flex flex-col items-center md:items-start lg:col-span-4">
+      <p
+        class="mb-7 max-w-md text-center text-sm leading-relaxed text-white md:max-w-none md:text-left lg:text-justify"
+      >
+        Gemotex is a globally recognized leader in garments procurement,
+        renowned for delivering efficient, quality-driven solutions to
+        businesses within the fashion industry.
+      </p>
+      <ul class="flex gap-5 text-xl">
+        <li>
+          <a
+            href="#"
+            class="grid aspect-square w-8 place-items-center rounded-full bg-white text-neutral-500"
+          >
+            <i class="ti ti-brand-facebook"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="grid aspect-square w-8 place-items-center rounded-full bg-white text-neutral-500"
+          >
+            <i class="ti ti-brand-linkedin"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="grid aspect-square w-8 place-items-center rounded-full bg-white text-neutral-500"
+          >
+            <i class="ti ti-brand-twitter"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="grid aspect-square w-8 place-items-center rounded-full bg-white text-neutral-500"
+          >
+            <i class="ti ti-brand-youtube"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div
+      class="flex w-full flex-wrap justify-center gap-4 md:gap-10 lg:col-span-5 lg:pl-10 xl:pl-16"
+    >
+      <div class="flex-1">
+        <h2 class="mb-3 text-sm font-bold md:text-base">Company</h2>
+        <div
+          class="grid w-max gap-3 text-[0.8rem] sm:grid-cols-2 md:gap-6 md:text-sm"
+        >
+          <div class="flex flex-col gap-3">
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Service Policy</a>
+            <a href="#">Privacy Policy</a>
+          </div>
+          <div class="flex flex-col gap-3">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Support Policy</a>
+            <a href="#">News</a>
+            <a href="#">FAQ</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-1">
+        <h2 class="mb-3 text-sm font-bold md:text-base">Contact Us</h2>
+        {% if contact %}
+        <div class="flex flex-col gap-3 text-[0.8rem] md:text-sm">
+          <a href="#" class="flex items-center gap-4">
+            <i class="ti ti-map-pin-filled text-[1.25em]"></i>
+            <span>{{ contact.adress }}</span>
+          </a>
+          <a href="#" class="flex items-center gap-4">
+            <i class="ti ti-phone-call text-[1.25em]"></i>
+            <span>{{ contact.phone }}</span>
+          </a>
+          <a href="#" class="flex items-center gap-4">
+            <i class="ti ti-mail-filled text-[1.25em]"></i>
+            <span>{{ contact.email }}</span>
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="mt-4 w-full bg-neutral-800 p-4 text-center text-xs sm:text-sm"
+>
+  <p class="text-white">Developed by <a class="text-blue-500 hover:underline" href="https://www.itsourcebd.com/" target="_blank">ITSOURCE</a> | © 2020-2023 gemotex. All rights reserved.</p>
+</div>
+</footer>

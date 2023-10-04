@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  // font-family: 'Mulish', sans-serif;
+  font-family: "Poppins", sans-serif;
+}
+html,
+body {
+  @apply min-h-full;
+}
+.dropdown,
+.submenu {
+  @apply relative;
+}
+
+.dropdown > .dropdown-menu,
+.submenu > .submenu-menu {
+  @apply mt-1 space-y-1 bg-white pl-3 transition-all;
+}
+
+#navbar.nav-open {
+  @apply translate-x-0;
+}
+#navbar {
+  @apply -translate-x-full transition-transform duration-300;
+  @apply fixed bottom-0 left-0 top-16 z-50 w-full max-w-xs text-sm;
+}
+
+.dropdown > .dropdown-menu,
+.submenu > .submenu-menu {
+  @apply hidden;
+}
+.dropdown > .menu-open.dropdown-menu,
+.submenu > .menu-open.submenu-menu {
+  @apply block;
+}
+.nav-menu {
+  @apply flex h-full flex-col gap-3 bg-white py-8 pl-6 pr-4;
+}
+
+.nav-link {
+  @apply font-medium text-neutral-600 hover:text-neutral-400;
+}
+@media screen(md) {
+  #navbar {
+    @apply static top-auto max-w-none translate-x-0 transition-none;
+  }
+
+  .dropdown > .dropdown-menu {
+    @apply absolute top-full z-10  mt-0 w-48 translate-y-5 rounded-lg bg-white p-2 px-2 py-2 shadow-md outline outline-1 outline-neutral-200 transition-all;
+    @apply before:absolute before:-top-5 before:left-0 before:h-5 before:w-full;
+  }
+
+  .dropdown > .dropdown-menu,
+  .submenu > .submenu-menu {
+    @apply invisible block opacity-0;
+  }
+
+  .submenu > .submenu-menu {
+    @apply absolute top-0 z-10 mt-0 w-48 rounded-lg bg-white p-2 px-2 py-2 shadow-md outline outline-1 outline-neutral-200 transition-all;
+    @apply before:absolute before:top-0 before:h-full before:w-5;
+  }
+
+  .submenu__left > .submenu-menu {
+    @apply right-full -translate-x-7 before:-right-5 before:left-auto;
+  }
+  .submenu__right > .submenu-menu {
+    @apply left-full translate-x-7 before:-left-5 before:right-auto;
+  }
+
+  .dropdown:hover > .dropdown-menu {
+    @apply visible translate-y-3 opacity-100;
+  }
+  .submenu:hover > .submenu-menu {
+    @apply visible opacity-100;
+  }
+
+  .submenu.submenu__left:hover > .submenu-menu {
+    @apply -translate-x-5;
+  }
+  .submenu.submenu__right:hover > .submenu-menu {
+    @apply translate-x-5;
+  }
+  .nav-menu {
+    @apply flex-row items-center justify-end gap-5 bg-transparent p-0;
+  }
+  .nav-link {
+    @apply px-3;
+  }
+}
+
+.brand-link {
+  font-family: "Permanent Marker", cursive;
+  @apply flex-none text-3xl font-semibold;
+}
+
+.menu-link,
+.submenu-btn {
+  @apply flex w-full gap-x-5 items-center rounded-md  px-3 py-1.5 text-sm text-neutral-800 hover:bg-neutral-100 focus:ring-2 focus:ring-blue-500;
+}
+
+.splide__slide {
+  @apply relative;
+  img {
+    @apply absolute inset-0 -z-10;
+  }
+}
+
+.autoplay-progress {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--swiper-theme-color);
+}
+
+.autoplay-progress svg {
+  --progress: 0;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  stroke-width: 4px;
+  stroke: var(--swiper-theme-color);
+  fill: none;
+  stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+  stroke-dasharray: 125.6;
+  transform: rotate(-90deg);
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-neutral-900;
+}
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-number-input input:focus {
+  outline: none !important;
+}
+
+.custom-number-input button:focus {
+  outline: none !important;
+}
+
+.tab-link {
+  @apply font-semibold uppercase text-neutral-500 transition-colors hover:text-neutral-950;
+}
+
+.active-tab-link {
+  @apply border-b-2 border-b-neutral-950 text-neutral-950;
+}
