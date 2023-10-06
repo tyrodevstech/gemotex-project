@@ -1,13 +1,19 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from app_main.models import ContactInformationModel, FooterInformationModel
+from app_main.models import ContactInformationModel, HeaderSliderModel, ReviewModel
 
 # Create your views here.
 
 
 class IndexView(TemplateView):
     template_name = "app_main/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["slider_qs"] = HeaderSliderModel.objects.filter(active=True)
+        context["review_qs"] = ReviewModel.objects.all()
+        return context
 
 
 class AboutView(TemplateView):

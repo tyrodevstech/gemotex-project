@@ -32,6 +32,21 @@ class FooterInformationAdmin(admin.ModelAdmin):
 
 admin.site.register(FooterInformationModel, FooterInformationAdmin)
 
+
+class HeaderSliderAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at', 'active')
+
+
+admin.site.register(HeaderSliderModel, HeaderSliderAdmin)
+
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('name', 'position', 'created_at')
+
+
+admin.site.register(ReviewModel, ReviewAdmin)
+
+
 admin.site.register(ProductCategoryModel)
 admin.site.register(ProductSubcategoryModel)
 admin.site.register(ProductModel)

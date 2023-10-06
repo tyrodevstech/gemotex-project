@@ -3,6 +3,51 @@ from django.db import models
 # Create your models here.
 
 
+class HeaderSliderModel(models.Model):
+    title = models.CharField(null=True, blank=True, max_length=125)
+    promo = models.TextField(null=True, blank=True, max_length=225)
+    cta_text = models.CharField(
+        max_length=20, null=True, blank=True, verbose_name="button text")
+    cta_link = models.URLField(
+        null=True, blank=True, verbose_name="button link")
+    bg_img = models.ImageField(
+        upload_to="Headersliderbg", null=True, verbose_name="background image", help_text="image size: w-1920px x h-1100")
+    active = models.BooleanField(default=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = "Header Slider"
+        verbose_name_plural = "Header Sliders"
+
+
+class ReviewModel(models.Model):
+    details = models.TextField(
+        null=True, max_length=525, verbose_name="client comment")
+    profile = models.ImageField(
+        upload_to="client-review-profiles", null=True, blank=True, verbose_name="person image")
+    name = models.CharField(max_length=225, null=True,
+                            verbose_name="client name")
+    position = models.CharField(
+        max_length=225, null=True, verbose_name="job description")
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.id}- review"
+
+    class Meta:
+        verbose_name = "Client Review"
+        verbose_name_plural = "Client Reviews"
+
+        ordering = [
+            '-id'
+        ]
+
+
 class ContactInformationModel(models.Model):
     details = models.TextField(
         null=True, blank=True, max_length=325, verbose_name="short summary")
@@ -86,7 +131,7 @@ class ProductModel(models.Model):
     tag = models.CharField(max_length=6, null=True, default="NEW")
 
     cover_image = models.ImageField(
-        upload_to="product-cover-image/%Y/%d/%b", null=True, help_text="Size Direction: W:800PX & H:975PX")
+        upload_to="product-cover-image/%Y/%d/%b", null=True, help_text="image size: w-800px x h-975px")
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
