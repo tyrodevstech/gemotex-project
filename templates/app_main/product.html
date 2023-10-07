@@ -1,152 +1,167 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Product | {% endblock title %}
-
-
 {% block main_content %}
-<section class="my-8 py-8 md:my-16 md:py-16">
-    <div class="wrapper container">
-      <div
-        class="mb-16 grid grid-cols-1 items-start gap-8 md:grid-cols-5 md:gap-12 lg:gap-16"
+
+<div class="breadcrumbs container pt-8">
+  <div
+    class="flex items-center uppercase font-semibold gap-4 overflow-x-auto whitespace-nowrap text-sm"
+  >
+    <a href="/" class="flex items-center gap-2 text-zinc-500 hover:text-zinc-950 hover:underline">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-4 w-4"
+        viewBox="0 0 20 20"
+        fill="currentColor"
       >
-        <div
-          class="relative w-full border-2 transition-all duration-300 hover:border-neutral-700 md:col-span-2"
-        >
-          <img
-            src="https://dunker.qodeinteractive.com/wp-content/uploads/2022/12/shop-list-filter-1-800x975.jpg"
-            alt=""
-            class="aspect-square h-auto w-full object-cover"
-          />
-        </div>
-        <div class="w-full md:col-span-3">
-          <h2
-            class="text-3xl font-semibold capitalize md:text-4xl lg:text-5xl"
-          >
-            White T-shirt
-          </h2>
-          <span class="my-5 block text-lg font-bold md:my-8 md:text-2xl">
-            $45
-          </span>
-          <p
-            class="line-clamp-4 text-sm leading-normal tracking-wider text-neutral-700 md:text-base md:leading-relaxed"
-          >
-            Alienum phaedrum torquatos nec eu, vis detraxit periculis ex,
-            nihil expete mei. Mei an Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Ut nec vulputate massa. Maecenas dui augue,
-            dictum dictum varius nec, suscipit eu dolor. Duis tellus.
-          </p>
-          <div class="mt-4 flex flex-wrap gap-5 md:mt-8">
-            <div
-              class="relative flex w-32 flex-row rounded border border-neutral-300 bg-transparent px-4"
-            >
-              <button
-                data-action="decrement"
-                class="h-full w-20 cursor-pointer rounded-l text-neutral-600 outline-none hover:text-black"
-              >
-                <span class="m-auto text-2xl font-thin">−</span>
-              </button>
-              <input
-                type="number"
-                class="text-md md:text-basecursor-default flex w-full items-center bg-transparent text-center font-semibold text-neutral-700 outline-none hover:text-black focus:text-black focus:outline-none"
-                name="custom-input-number"
-                value="0"
-              />
-              <button
-                data-action="increment"
-                class="rounded- h-full w-20 cursor-pointer text-neutral-600 hover:text-black"
-              >
-                <span class="m-auto text-2xl font-thin">+</span>
-              </button>
-            </div>
-            <button
-              class="flex items-center justify-center gap-3 rounded border border-gray-300 bg-gray-200 px-5 py-2 transition-colors hover:bg-neutral-950 hover:text-white"
-            >
-              Add to cart
-              <i class="ti ti-shopping-bag"></i>
+        <path
+          d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+        />
+      </svg>
+      Home
+    </a>
+
+    <span class="text-zinc-500">/</span>
+
+    <a href="{% url 'app_main:product_list' %}" class="text-zinc-500 hover:text-zinc-950 hover:underline">Products</a>
+    <span class="text-zinc-500">/</span>
+
+    <a href="{{request.path}}" class="text-zinc-950 hover:underline">{{product.title}}</a>
+  </div>
+</div>
+
+<section class="my-8 py-4 md:my-16 md:py-8">
+  <div class="wrapper container">
+    <div class="mb-16 grid grid-cols-1 items-start gap-8 md:grid-cols-5 md:gap-12 lg:gap-16">
+      <div class="relative w-full border-2 transition-all duration-300 hover:border-neutral-700 md:col-span-2">
+        <img id="main-image" src="{% if product.cover_image %}{{product.cover_image.url}}{% endif %}" alt=""
+          class="aspect-square h-auto w-full object-cover" />
+      </div>
+      <div class="w-full md:col-span-3">
+        <h2 class="text-3xl font-semibold capitalize md:text-4xl lg:text-5xl">
+          {{product.title}}
+        </h2>
+        <p
+          class="mt-5 line-clamp-4 text-sm leading-normal tracking-wider text-neutral-700 md:mt-8 md:text-base md:leading-relaxed">
+          {{product.details}}
+        </p>
+        <div class="mt-4 flex flex-wrap gap-5 md:mt-8">
+          <div class="relative flex w-32 flex-row rounded border border-neutral-300 bg-transparent px-4">
+            <button data-action="decrement"
+              class="h-full w-20 cursor-pointer rounded-l text-neutral-600 outline-none hover:text-black">
+              <span class="m-auto text-2xl font-thin">−</span>
+            </button>
+            <input type="number"
+              class="text-md md:text-basecursor-default flex w-full items-center bg-transparent text-center font-semibold text-neutral-700 outline-none hover:text-black focus:text-black focus:outline-none"
+              name="custom-input-number" value="0" />
+            <button data-action="increment"
+              class="rounded- h-full w-20 cursor-pointer text-neutral-600 hover:text-black">
+              <span class="m-auto text-2xl font-thin">+</span>
             </button>
           </div>
-          <div class="mt-6 flex flex-col gap-3 md:mt-8">
-            <span class="inline-block text-sm uppercase">
-              <span class="mr-3 inline-block font-semibold">SKU:</span>
-              213-1
-            </span>
-            <span class="inline-block text-sm uppercase">
-              <span class="mr-3 inline-block font-semibold">Category:</span>
-              Sports
-            </span>
-            <span class="inline-block text-sm uppercase">
-              <span class="mr-3 inline-block font-semibold">Brand:</span>
-              PUMA
-            </span>
-            <span class="inline-block text-sm uppercase">
-              <span class="mr-3 inline-block font-semibold">Tag:</span>
-              New
-            </span>
-          </div>
+          <button
+            class="flex items-center justify-center gap-3 rounded border border-gray-300 bg-gray-200 px-5 py-2 transition-colors hover:bg-neutral-950 hover:text-white">
+            Add to cart
+            <i class="ti ti-shopping-bag"></i>
+          </button>
         </div>
-      </div>
-      <div class="tabs">
-        <div class="flex flex-wrap gap-6 border-y border-neutral-300 py-6">
-          <a href="#description" class="tab-link">Description</a>
-          <a href="#additional_infos" class="tab-link">
-            Additional Information
-          </a>
-          <a href="#reviews" class="tab-link">Reviews (0)</a>
+        <div class="mt-6 flex flex-col gap-3 md:mt-8">
+          <span class="inline-block text-sm uppercase">
+            <span class="mr-3 inline-block font-semibold">Category:</span>
+            {{product.category.category_name}}
+          </span>
+          <span class="inline-block text-sm uppercase">
+            <span class="mr-3 inline-block font-semibold">Subcategory:</span>
+            {{product.subcategory.subcategory_name}}
+          </span>
+          <span class="inline-block text-sm uppercase">
+            <span class="mr-3 inline-block font-semibold">Tag:</span>
+            New
+          </span>
         </div>
-        <div class="mt-8 text-sm text-neutral-700 md:text-base">
-          <div class="tab-content hidden" id="description">
-            Alienum phaedrum torquatos nec eu, vis detraxit periculis ex,
-            nihil expete mei. Mei an Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Ut nec vulputate massa in et. Maecenas dui
-            augue, dictum dictum varius nec, suscipit eu dolor. Duis tellus
-            ligula, porta et mauris sit amet, condimentum sagittis erat.
-            Duis eget nisi velit nunc. Curabitur dignissim justo tortor.
-            Consequat an. Eius lorem tincidunt vix at, vel pertinax sensibus
-            id, error epicurei mea. Donec ut velit mi vitae
+        <div class="extra-images grid grid-cols-4 mt-6 md:mt-8 gap-2">
+          {% for extra_img in product.images.all %}
+          <div class="thumbnail w-full h-full border cursor-pointer">
+            <img src="{{extra_img.image.url }}" alt="" class="w-full h-full object-cover aspect-square">
           </div>
-          <div class="tab-content hidden" id="additional_infos">
-            Additional information tab
-          </div>
-          <div class="tab-content hidden" id="reviews">No reviews</div>
+          {% endfor %}
         </div>
       </div>
     </div>
-  </section>
-{% endblock main_content %}
-
-
-{% block script %}
+    <div class="tabs">
+      <div class="flex flex-wrap gap-6 border-y border-neutral-300 py-6">
+        <a href="#description" class="tab-link">Description</a>
+        <a href="#additional_infos" class="tab-link">Additional Information</a>
+      </div>
+      <div class="mt-8 text-sm text-neutral-700 md:text-base">
+        <div class="tab-content hidden" id="description">
+          {{product.details}}
+        </div>
+        <div class="tab-content hidden" id="additional_infos">
+          {{product.info}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock main_content %} {% block script %}
 
 <script>
-    // Function to switch tabs
-    const switchTab = (tabId) => {
-      // Hide all tab contents and remove active class from tab links
-      const tabContents = document.querySelectorAll(".tab-content");
-      const tabLinks = document.querySelectorAll(".tab-link");
-      tabContents.forEach((tab) => (tab.style.display = "none"));
-      tabLinks.forEach((link) => link.classList.remove("active-tab-link"));
-
-      // Show the selected tab content and add active class to the tab link
-      const selectedTab = document.getElementById(tabId);
-      const selectedTabLink = document.querySelector(`[href="#${tabId}"]`);
-      if (selectedTab && selectedTabLink) {
-        selectedTab.style.display = "block";
-        selectedTabLink.classList.add("active-tab-link");
-      }
-    };
-
-    // Initialize with the first tab active
-    switchTab("description");
-
-    // Add click event listeners to tab links
+  // Function to switch tabs
+  const switchTab = (tabId) => {
+    // Hide all tab contents and remove active class from tab links
+    const tabContents = document.querySelectorAll(".tab-content");
     const tabLinks = document.querySelectorAll(".tab-link");
-    tabLinks.forEach((tabLink) => {
-      tabLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        const tabId = tabLink.getAttribute("href").substring(1); // Get the target tab ID
-        switchTab(tabId);
-      });
+    tabContents.forEach((tab) => (tab.style.display = "none"));
+    tabLinks.forEach((link) => link.classList.remove("active-tab-link"));
+
+    // Show the selected tab content and add active class to the tab link
+    const selectedTab = document.getElementById(tabId);
+    const selectedTabLink = document.querySelector(`[href="#${tabId}"]`);
+    if (selectedTab && selectedTabLink) {
+      selectedTab.style.display = "block";
+      selectedTabLink.classList.add("active-tab-link");
+    }
+  };
+
+  // Initialize with the first tab active
+  switchTab("description");
+
+  // Add click event listeners to tab links
+  const tabLinks = document.querySelectorAll(".tab-link");
+  tabLinks.forEach((tabLink) => {
+    tabLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      const tabId = tabLink.getAttribute("href").substring(1); // Get the target tab ID
+      switchTab(tabId);
     });
+  });
+
+  // script.js
+  document.addEventListener("DOMContentLoaded", function () {
+    const mainImage = document.getElementById("main-image");
+    const thumbnails = document.querySelectorAll(".thumbnail");
+
+    // Function to change the main image when a thumbnail is clicked
+    function changeImage(event) {
+      const clickedThumbnail = event.target;
+      
+      // Remove the "active" class from all thumbnails
+      thumbnails.forEach((thumbnail) => {
+        thumbnail.classList.remove("border-zinc-950");
+      });
+
+      // Add the "active" class to the clicked thumbnail
+      clickedThumbnail.parentElement.classList.add("border-zinc-950");
+      mainImage.src = clickedThumbnail.src;
+    }
+
+    // Add a click event listener to each thumbnail
+    thumbnails.forEach((thumbnail) => {
+      thumbnail.addEventListener("click", changeImage);
+    });
+  });
+
 </script>
 
 {% endblock script %}

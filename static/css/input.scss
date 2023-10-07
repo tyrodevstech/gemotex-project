@@ -164,3 +164,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .active-tab-link {
   @apply border-b-2 border-b-neutral-950 text-neutral-950;
 }
+
+#subcategory-filter-panel.active{
+  @apply visible translate-y-3 opacity-100;
+}

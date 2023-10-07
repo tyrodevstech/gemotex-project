@@ -34,46 +34,24 @@
             </button>
 
             <ul class="dropdown-menu">
-              <!-- <li><a class="menu-link" href="{% url 'app_main:product' %}">Men</a></li> -->
+              <li><a class="menu-link" href="{% url 'app_main:product_list' %}">All Category</a></li>
+              {% for category in categories %}
               <li
                 class="submenu__left submenu [--strategy:static] md:[--strategy:absolute]"
               >
                 <button type="button" class="submenu-btn menu-toggle-btn">
-                  Knit
+                  {{category.category_name}}
                   <i class="ti ti-chevron-right rotate-90 md:rotate-0"></i>
                 </button>
                 <ul class="submenu-menu">
-                  <li><a class="menu-link" href="#">Men</a></li>
-                  <li><a class="menu-link" href="#">Women</a></li>
-                  <li><a class="menu-link" href="#">Kids</a></li>
+
+                  <li><a class="menu-link" href="{% url 'app_main:product_list' %}?category={{category.category_name}}">All Subcategory</a></li>
+                  {% for subcategory in category.subcategories.all %}
+                  <li><a class="menu-link" href="{% url 'app_main:product_list' %}?category={{category.category_name}}&subcategory={{subcategory.subcategory_name}}">{{subcategory.subcategory_name}}</a></li>
+                  {% endfor %}
                 </ul>
               </li>
-              <li
-                class="submenu__left submenu [--strategy:static] md:[--strategy:absolute]"
-              >
-                <button type="button" class="submenu-btn menu-toggle-btn">
-                  Woven
-                  <i class="ti ti-chevron-right rotate-90 md:rotate-0"></i>
-                </button>
-                <ul class="submenu-menu">
-                  <li><a class="menu-link" href="#">Men</a></li>
-                  <li><a class="menu-link" href="#">Women</a></li>
-                  <li><a class="menu-link" href="#">Kids</a></li>
-                </ul>
-              </li>
-              <li
-                class="submenu__left submenu [--strategy:static] md:[--strategy:absolute]"
-              >
-                <button type="button" class="submenu-btn menu-toggle-btn">
-                  Sweater
-                  <i class="ti ti-chevron-right rotate-90 md:rotate-0"></i>
-                </button>
-                <ul class="submenu-menu">
-                  <li><a class="menu-link" href="#">Men</a></li>
-                  <li><a class="menu-link" href="#">Women</a></li>
-                  <li><a class="menu-link" href="#">Kids</a></li>
-                </ul>
-              </li>
+              {% endfor %}
             </ul>
           </li>
 
