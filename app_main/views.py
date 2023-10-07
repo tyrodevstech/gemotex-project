@@ -20,11 +20,6 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
         context["products"] = ProductModel.objects.all()[:4]
-
-        return context
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
         context["slider_qs"] = HeaderSliderModel.objects.filter(active=True)
         context["review_qs"] = ReviewModel.objects.all()
         return context

@@ -1,5 +1,3 @@
-# admin.py
-
 from django.contrib import admin
 from .models import (
     ProductCategoryModel,
@@ -8,6 +6,8 @@ from .models import (
     ProductImagesModel,
     ContactInformationModel,
     FooterInformationModel,
+    HeaderSliderModel,
+    ReviewModel,
 )
 
 
@@ -17,7 +17,6 @@ class ProductImagesAdmin(admin.TabularInline):
     extra = 1
 
 
-# Register the ProductImagesModelAdmin
 # Create an admin class for ProductModel
 class ProductModelAdmin(admin.ModelAdmin):
     list_display = ("title", "category", "subcategory", "tag", "created_at")
@@ -75,9 +74,3 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ReviewModel, ReviewAdmin)
-
-
-admin.site.register(ProductCategoryModel)
-admin.site.register(ProductSubcategoryModel)
-admin.site.register(ProductModel)
-admin.site.register(ProductImagesModel)

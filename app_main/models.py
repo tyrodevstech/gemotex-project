@@ -1,6 +1,5 @@
 from django.db import models
 
-
 # Define Product Category Model
 class ProductCategoryModel(models.Model):
     category_name = models.CharField(max_length=225, null=True, blank=True)
@@ -94,7 +93,7 @@ class HeaderSliderModel(models.Model):
     )
     cta_link = models.URLField(null=True, blank=True, verbose_name="button link")
     bg_img = models.ImageField(
-        upload_to="Headersliderbg",
+        upload_to="headersliderbg",
         null=True,
         verbose_name="background image",
         help_text="image size: w-1920px x h-1100",

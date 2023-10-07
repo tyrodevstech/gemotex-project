@@ -10,10 +10,10 @@
   <div class="swiper-wrapper">
     <!-- slides start-->
     {% if slider_qs %}
-    {% for s in slider_qs %}
-    <div class="swiper-slide relative isolate bg-neutral-900">
+    {% for slider in slider_qs %}
+    <div class="swiper-slide relative isolate bg-zinc-900">
       <img 
-        src="{% if s.bg_img %}{{ s.bg_img.url }}{% else %}{% static 'images/h1-rev-img-1.jpg' %}{% endif %}"
+        src="{% if slider.bg_img %}{{ slider.bg_img.url }}{% else %}{% static 'images/h1-rev-img-1.jpg' %}{% endif %}"
         alt=""
         class="absolute inset-0 -z-10 h-full w-full object-cover opacity-75 md:opacity-100"
       />
@@ -24,19 +24,19 @@
           class="text-center text-white sm:max-w-xl md:max-w-2xl md:text-left lg:max-w-3xl"
         >
           <h1
-            class="text-3xl font-semibold sm:text-4xl md:text-5xl md:!leading-tight md:text-neutral-900 lg:text-6xl"
+            class="text-3xl font-semibold sm:text-4xl md:text-5xl md:!leading-tight md:text-zinc-900 lg:text-6xl"
           >
-            {% if s.title %}{{ s.title }}{% endif %}
+            {% if slider.title %}{{ slider.title }}{% endif %}
           </h1>
-          <p class="mt-3 md:text-xl md:text-neutral-700">
-            {% if s.promo %}{{ s.promo }}{% endif %}
+          <p class="mt-3 md:text-xl md:text-zinc-700">
+            {% if slider.promo %}{{ slider.promo }}{% endif %}
           </p>
-          {% if s.cta_text %}
+          {% if slider.cta_text %}
           <a
-            href="#"
-            class="mt-6 inline-block rounded-sm border-2 px-4 py-2 md:mt-12 md:border-neutral-700 md:px-6 md:py-3 md:text-neutral-900"
+            href="{% if slider.cta_link %}{{slider.cta_link}}{% else %}#{% endif %}"
+            class="mt-6 inline-block rounded-sm border-2 px-4 py-2 md:mt-12 md:border-zinc-700 md:px-6 md:py-3 md:text-zinc-900"
           >
-          {{ s.cta_text }}
+          {{ slider.cta_text }}
           </a>
           {% endif %}
         </div>
@@ -54,12 +54,12 @@
 
   <!-- If we need navigation buttons -->
   <div
-    class="swiper-button-prev !hidden text-neutral-900 after:content-none lg:!flex"
+    class="swiper-button-prev !hidden text-zinc-900 after:content-none lg:!flex"
   >
     <i class="ti ti-arrow-left text-3xl"></i>
   </div>
   <div
-    class="swiper-button-next !hidden text-neutral-900 after:content-none lg:!flex"
+    class="swiper-button-next !hidden text-zinc-900 after:content-none lg:!flex"
   >
     <i class="ti ti-arrow-right text-3xl"></i>
   </div>
@@ -75,11 +75,11 @@
 <section class="mt-8 py-8 md:mt-16 md:py-16">
   <div class="section-wrapper container">
     <div class="section-infos mb-5 text-center uppercase md:mb-8">
-      <p class="mb-1 text-sm font-medium text-neutral-700">
+      <p class="mb-1 text-sm font-medium text-zinc-700">
         Explore Our World
       </p>
       <h2
-        class="text-2xl font-bold leading-tight tracking-wider text-neutral-900 md:text-3xl xl:text-4xl"
+        class="text-2xl font-bold leading-tight tracking-wider text-zinc-900 md:text-3xl xl:text-4xl"
       >
         New and Featured Products
       </h2>
@@ -95,7 +95,7 @@
   </div>
 </section>
 
-<section class="my-8 bg-neutral-900 py-8 md:my-16 md:py-16">
+<section class="my-8 bg-zinc-900 py-8 md:my-16 md:py-16">
   <div class="wrapper container py-12 text-white">
     <div class="grid gap-6 lg:grid-cols-5 lg:gap-12 xl:gap-24">
       <h2
@@ -104,7 +104,7 @@
         Cut from a different cloth.
       </h2>
       <p
-        class="text-sm tracking-wider text-neutral-200 md:text-lg md:leading-relaxed lg:col-span-3 lg:leading-loose"
+        class="text-sm tracking-wider text-zinc-200 md:text-lg md:leading-relaxed lg:col-span-3 lg:leading-loose"
       >
         Gemotex is a globally recognized leader in garments procurement,
         renowned for delivering efficient, quality-driven solutions to
@@ -139,22 +139,22 @@
           <div class="card-infos">
             <div class="flex items-center justify-between">
               <span
-                class="rounded-sm bg-neutral-900 px-1.5 pb-0.5 pt-1 text-xs leading-none text-white"
+                class="rounded-sm bg-zinc-900 px-1.5 pb-0.5 pt-1 text-xs leading-none text-white"
               >
                 New
               </span>
               <span
-                class="ml-auto grid aspect-square w-12 place-items-center rounded-full bg-neutral-200 transition-colors hover:bg-neutral-700 hover:text-white"
+                class="ml-auto grid aspect-square w-12 place-items-center rounded-full bg-zinc-200 transition-colors hover:bg-zinc-700 hover:text-white"
               >
                 <i class="ti ti-heart text-xl"></i>
               </span>
             </div>
             <span
-              class="-mb-4 inline-block text-xs font-semibold uppercase text-neutral-600"
+              class="-mb-4 inline-block text-xs font-semibold uppercase text-zinc-600"
             >
               RANG
             </span>
-            <h4 class="text-xl font-bold uppercase text-neutral-900">
+            <h4 class="text-xl font-bold uppercase text-zinc-900">
               HIKING SHIRT
             </h4>
           </div>
@@ -162,7 +162,7 @@
         </div>
       </div>
       <span
-        class="absolute bottom-6 right-6 grid aspect-square w-12 place-items-center rounded-full bg-neutral-200 transition-colors hover:bg-neutral-700 hover:text-white sm:bottom-14 sm:right-14"
+        class="absolute bottom-6 right-6 grid aspect-square w-12 place-items-center rounded-full bg-zinc-200 transition-colors hover:bg-zinc-700 hover:text-white sm:bottom-14 sm:right-14"
       >
         <i class="ti ti-shopping-bag text-xl"></i>
       </span>
@@ -200,7 +200,7 @@
       class="group relative isolate grid aspect-square w-20 place-items-center"
     >
       <div
-        class="absolute inset-0 -z-10 scale-0 rounded-full bg-neutral-900 transition-transform duration-500 group-hover:scale-100"
+        class="absolute inset-0 -z-10 scale-0 rounded-full bg-zinc-900 transition-transform duration-500 group-hover:scale-100"
       ></div>
       <i
         class="ti ti-player-play text-6xl text-white transition-transform duration-500 group-hover:scale-50"
@@ -212,11 +212,11 @@
 <section class="py-8 md:py-16">
   <div class="wrapper container">
     <div class="section-infos mb-5 text-center uppercase md:mb-8">
-      <p class="mb-1 text-sm font-medium text-neutral-700">
-        Explore Our World
+      <p class="mb-1 text-sm font-medium text-zinc-700">
+        Our Client Reviews
       </p>
       <h2
-        class="text-2xl font-bold leading-tight tracking-wider text-neutral-900 md:text-3xl xl:text-4xl"
+        class="text-2xl font-bold leading-tight tracking-wider text-zinc-900 md:text-3xl xl:text-4xl"
       >
         Testimonials
       </h2>
@@ -224,27 +224,27 @@
     <div class="swiper testimonial-slider">
       <div class="swiper-wrapper">
         {% if review_qs %}
-        {% for r in review_qs %}
+        {% for review in review_qs %}
         <div class="swiper-slide py-8">
           <div
             class="mx-auto grid max-w-3xl place-items-center text-center"
           >
-            <h4 class="text-ce\ relative mb-8 p-1 font-medium md:text-xl">
+            <h4 class="text-center relative mb-8 p-1 font-medium md:text-xl">
               <i
-                class="ti ti-quote absolute -left-8 -top-4 inline-block rotate-180 text-4xl text-neutral-700"
+                class="ti ti-quote absolute -left-8 -top-4 inline-block rotate-180 text-4xl text-zinc-700"
               ></i>
-              {{ r.details }}
+              {{ review.details }}
               <i
-                class="ti ti-quote absolute -bottom-4 -right-8 inline-block text-4xl text-neutral-700"
+                class="ti ti-quote absolute -bottom-4 -right-8 inline-block text-4xl text-zinc-700"
               ></i>
             </h4>
             <img
               class="aspect-square w-12 rounded-full object-cover"
-              src="{% if r.profile %}{{ r.profile.url }}{% else %}https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&h=764&q=100{% endif %}"
+              src="{% if review.profile %}{{ review.profile.url }}{% else %}https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&h=764&q=100{% endif %}"
               alt=""
             />
-            <h5 class="mt-3 font-semibold">{{ r.name }}</h5>
-            <span class="text-sm text-neutral-700">{{ r.position }}</span>
+            <h5 class="mt-3 font-semibold">{{ review.name }}</h5>
+            <span class="text-sm text-zinc-700">{{ review.position }}</span>
           </div>
         </div>
         {% endfor %}
@@ -252,12 +252,12 @@
       </div>
       <!-- If we need navigation buttons -->
       <div
-        class="swiper-button-prev !hidden text-neutral-900 after:content-none lg:!flex"
+        class="swiper-button-prev !hidden text-zinc-900 after:content-none lg:!flex"
       >
         <i class="ti ti-arrow-left text-3xl"></i>
       </div>
       <div
-        class="swiper-button-next !hidden text-neutral-900 after:content-none lg:!flex"
+        class="swiper-button-next !hidden text-zinc-900 after:content-none lg:!flex"
       >
         <i class="ti ti-arrow-right text-3xl"></i>
       </div>
@@ -270,7 +270,7 @@
     class="wrapper container grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
   >
     <div
-      class="aspect-[2/1] border border-neutral-300 bg-white transition-all duration-300 hover:border-neutral-700 xl:aspect-[5/3]"
+      class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-700 xl:aspect-[5/3]"
     >
       <img
         src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/inner-png-15.png"
@@ -279,7 +279,7 @@
       />
     </div>
     <div
-      class="aspect-[2/1] border border-neutral-300 bg-white transition-all duration-300 hover:border-neutral-800 xl:aspect-[5/3]"
+      class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-800 xl:aspect-[5/3]"
     >
       <img
         src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/inner-png-12.png"
@@ -288,7 +288,7 @@
       />
     </div>
     <div
-      class="aspect-[2/1] border border-neutral-300 bg-white transition-all duration-300 hover:border-neutral-800 xl:aspect-[5/3]"
+      class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-800 xl:aspect-[5/3]"
     >
       <img
         src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/inner-png-19.png"
@@ -297,7 +297,7 @@
       />
     </div>
     <div
-      class="aspect-[2/1] border border-neutral-300 bg-white transition-all duration-300 hover:border-neutral-800 xl:aspect-[5/3]"
+      class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-800 xl:aspect-[5/3]"
     >
       <img
         src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/inner-png-11.png"
@@ -306,7 +306,7 @@
       />
     </div>
     <div
-      class="aspect-[2/1] border border-neutral-300 bg-white transition-all duration-300 hover:border-neutral-800 xl:aspect-[5/3]"
+      class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-800 xl:aspect-[5/3]"
     >
       <img
         src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/inner-png-20.png"
@@ -315,7 +315,7 @@
       />
     </div>
     <div
-      class="aspect-[2/1] border border-neutral-300 bg-white transition-all duration-300 hover:border-neutral-800 xl:aspect-[5/3]"
+      class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-800 xl:aspect-[5/3]"
     >
       <img
         src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/inner-png-14.png"
