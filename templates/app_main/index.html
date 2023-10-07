@@ -8,10 +8,12 @@
 <div class="swiper header-slider h-[60vh] w-full md:h-[calc(100vh-4rem)]">
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
-    <!-- Slides -->
+    <!-- slides start-->
+    {% if slider_qs %}
+    {% for s in slider_qs %}
     <div class="swiper-slide relative isolate bg-neutral-900">
-      <img
-        src="{% static 'images/h1-rev-img-1.jpg' %}"
+      <img 
+        src="{% if s.bg_img %}{{ s.bg_img.url }}{% else %}{% static 'images/h1-rev-img-1.jpg' %}{% endif %}"
         alt=""
         class="absolute inset-0 -z-10 h-full w-full object-cover opacity-75 md:opacity-100"
       />
@@ -24,22 +26,27 @@
           <h1
             class="text-3xl font-semibold sm:text-4xl md:text-5xl md:!leading-tight md:text-neutral-900 lg:text-6xl"
           >
-            GEMO TEX SOURCING PREMIUM COLLECTIONS
+            {% if s.title %}{{ s.title }}{% endif %}
           </h1>
           <p class="mt-3 md:text-xl md:text-neutral-700">
-            "Elevate Your Style with Gemotex's Premium Collections."
+            {% if s.promo %}{{ s.promo }}{% endif %}
           </p>
+          {% if s.cta_text %}
           <a
             href="#"
             class="mt-6 inline-block rounded-sm border-2 px-4 py-2 md:mt-12 md:border-neutral-700 md:px-6 md:py-3 md:text-neutral-900"
           >
-            Order Now
+          {{ s.cta_text }}
           </a>
+          {% endif %}
         </div>
       </div>
     </div>
-    <div class="swiper-slide">Slide 2</div>
-    <div class="swiper-slide">Slide 3</div>
+    {% endfor %}
+    {% else %}
+    <div class="swiper-slide">No Slide</div>
+    {% endif %}
+    <!-- slides end-->
     ...
   </div>
   <!-- If we need pagination -->
@@ -216,6 +223,8 @@
     </div>
     <div class="swiper testimonial-slider">
       <div class="swiper-wrapper">
+        {% if review_qs %}
+        {% for r in review_qs %}
         <div class="swiper-slide py-8">
           <div
             class="mx-auto grid max-w-3xl place-items-center text-center"
@@ -224,22 +233,22 @@
               <i
                 class="ti ti-quote absolute -left-8 -top-4 inline-block rotate-180 text-4xl text-neutral-700"
               ></i>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Dignissimos sit voluptas perspiciatis corporis possimus
-              asperiores odio eligendi et aut distinctio.
+              {{ r.details }}
               <i
                 class="ti ti-quote absolute -bottom-4 -right-8 inline-block text-4xl text-neutral-700"
               ></i>
             </h4>
             <img
               class="aspect-square w-12 rounded-full object-cover"
-              src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&h=764&q=100"
+              src="{% if r.profile %}{{ r.profile.url }}{% else %}https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&h=764&q=100{% endif %}"
               alt=""
             />
-            <h5 class="mt-3 font-semibold">Jhon Doe</h5>
-            <span class="text-sm text-neutral-700">Business Owner</span>
+            <h5 class="mt-3 font-semibold">{{ r.name }}</h5>
+            <span class="text-sm text-neutral-700">{{ r.position }}</span>
           </div>
         </div>
+        {% endfor %}
+        {% endif %}
       </div>
       <!-- If we need navigation buttons -->
       <div

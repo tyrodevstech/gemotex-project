@@ -4,7 +4,8 @@ from django.views.generic import TemplateView, ListView, DetailView
 
 from app_main.models import (
     ContactInformationModel,
-    FooterInformationModel,
+    HeaderSliderModel,
+    ReviewModel,
     ProductModel,
     ProductSubcategoryModel,
     ProductCategoryModel,
@@ -20,6 +21,12 @@ class IndexView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["products"] = ProductModel.objects.all()[:4]
 
+        return context
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["slider_qs"] = HeaderSliderModel.objects.filter(active=True)
+        context["review_qs"] = ReviewModel.objects.all()
         return context
 
 

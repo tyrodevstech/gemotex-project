@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Define Product Category Model
 class ProductCategoryModel(models.Model):
     category_name = models.CharField(max_length=225, null=True, blank=True)
@@ -15,7 +16,11 @@ class ProductCategoryModel(models.Model):
 # Define Product Subcategory Model
 class ProductSubcategoryModel(models.Model):
     category = models.ForeignKey(
-        ProductCategoryModel, on_delete=models.CASCADE, null=True,related_name='subcategories')
+        ProductCategoryModel,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="subcategories",
+    )
     subcategory_name = models.CharField(max_length=225, null=True, blank=True)
 
     def __str__(self):
@@ -28,20 +33,32 @@ class ProductSubcategoryModel(models.Model):
 
 # Define Product Model
 class ProductModel(models.Model):
-    title = models.CharField(max_length=122, null=True,
-                             verbose_name="Product Title")
+    title = models.CharField(max_length=122, null=True, verbose_name="Product Title")
     category = models.ForeignKey(
-        ProductCategoryModel, on_delete=models.CASCADE, null=True, related_name="products")
+        ProductCategoryModel,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="products",
+    )
     subcategory = models.ForeignKey(
-        ProductSubcategoryModel, on_delete=models.CASCADE, null=True, related_name="products")
+        ProductSubcategoryModel,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="products",
+    )
     details = models.TextField(
-        null=True, blank=True, max_length=325, verbose_name="Product Details")
+        null=True, blank=True, max_length=325, verbose_name="Product Details"
+    )
     info = models.TextField(
-        null=True, blank=True, max_length=325, verbose_name="Additional Information")
+        null=True, blank=True, max_length=325, verbose_name="Additional Information"
+    )
     tag = models.CharField(max_length=6, null=True, default="NEW")
 
     cover_image = models.ImageField(
-        upload_to="product-cover-image/%Y/%d/%b", null=True, help_text="Size Direction: W:800PX & H:975PX")
+        upload_to="product-cover-image/%Y/%d/%b",
+        null=True,
+        help_text="Size Direction: W:800PX & H:975PX",
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -56,7 +73,8 @@ class ProductModel(models.Model):
 # Define Product Images Model
 class ProductImagesModel(models.Model):
     product = models.ForeignKey(
-        ProductModel, on_delete=models.CASCADE, null=True, related_name="images")
+        ProductModel, on_delete=models.CASCADE, null=True, related_name="images"
+    )
     image = models.ImageField(upload_to="products-images/%Y/%d/%b", null=True)
 
     def __str__(self):
@@ -68,14 +86,66 @@ class ProductImagesModel(models.Model):
 
 
 # Define Contact Information Model
+class HeaderSliderModel(models.Model):
+    title = models.CharField(null=True, blank=True, max_length=125)
+    promo = models.TextField(null=True, blank=True, max_length=225)
+    cta_text = models.CharField(
+        max_length=20, null=True, blank=True, verbose_name="button text"
+    )
+    cta_link = models.URLField(null=True, blank=True, verbose_name="button link")
+    bg_img = models.ImageField(
+        upload_to="Headersliderbg",
+        null=True,
+        verbose_name="background image",
+        help_text="image size: w-1920px x h-1100",
+    )
+    active = models.BooleanField(default=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = "Header Slider"
+        verbose_name_plural = "Header Sliders"
+
+
+class ReviewModel(models.Model):
+    details = models.TextField(null=True, max_length=525, verbose_name="client comment")
+    profile = models.ImageField(
+        upload_to="client-review-profiles",
+        null=True,
+        blank=True,
+        verbose_name="person image",
+    )
+    name = models.CharField(max_length=225, null=True, verbose_name="client name")
+    position = models.CharField(
+        max_length=225, null=True, verbose_name="job description"
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.id}- review"
+
+    class Meta:
+        verbose_name = "Client Review"
+        verbose_name_plural = "Client Reviews"
+
+        ordering = ["-id"]
+
+
 class ContactInformationModel(models.Model):
     details = models.TextField(
-        null=True, blank=True, max_length=325, verbose_name="Short Summary")
+        null=True, blank=True, max_length=325, verbose_name="Short Summary"
+    )
     phone = models.CharField(max_length=122, null=True)
     email = models.CharField(max_length=122, null=True)
     address = models.TextField(null=True, blank=True, max_length=325)
-    work = models.TextField(null=True, blank=True,
-                            max_length=325, verbose_name="Working Date & Time")
+    work = models.TextField(
+        null=True, blank=True, max_length=325, verbose_name="Working Date & Time"
+    )
 
     def __str__(self):
         return f"{self.id} - Contact Info"
@@ -83,21 +153,18 @@ class ContactInformationModel(models.Model):
     class Meta:
         verbose_name = "Contact Information"
         verbose_name_plural = "Contact Informations"
-        ordering = ['-id']
+        ordering = ["-id"]
 
 
 # Define Footer Information Model
 class FooterInformationModel(models.Model):
-    details = models.TextField(
-        null=True, max_length=325, verbose_name="Short Summary")
-    facebook_link = models.URLField(
-        null=True, blank=True, verbose_name="Facebook Link")
-    twitter_link = models.URLField(
-        null=True, blank=True, verbose_name="Twitter Link")
+    details = models.TextField(null=True, max_length=325, verbose_name="Short Summary")
+    facebook_link = models.URLField(null=True, blank=True, verbose_name="Facebook Link")
+    twitter_link = models.URLField(null=True, blank=True, verbose_name="Twitter Link")
     instagram_link = models.URLField(
-        null=True, blank=True, verbose_name="Instagram Link")
-    youtube_link = models.URLField(
-        null=True, blank=True, verbose_name="YouTube Link")
+        null=True, blank=True, verbose_name="Instagram Link"
+    )
+    youtube_link = models.URLField(null=True, blank=True, verbose_name="YouTube Link")
 
     def __str__(self):
         return f"{self.id} - Footer Info"
@@ -105,4 +172,4 @@ class FooterInformationModel(models.Model):
     class Meta:
         verbose_name = "Footer Information"
         verbose_name_plural = "Footer Informations"
-        ordering = ['-id']
+        ordering = ["-id"]
