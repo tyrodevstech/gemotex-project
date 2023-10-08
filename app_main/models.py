@@ -126,6 +126,126 @@ class HeaderSliderModel(models.Model):
         verbose_name_plural = "Header Sliders"
 
 
+class BrandGalleryModel(models.Model):
+    obj_name = models.CharField(null=True, max_length=125, default="Brand Gallery Object", verbose_name="object name")
+    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, null=True, blank=True)
+    left_img = models.ImageField(
+        upload_to="brand-gallery",
+        null=True,
+        verbose_name="left site image",
+        help_text="image size: w-1000px x h-1000",
+    )
+
+    top_img = models.ImageField(
+        upload_to="brand-gallery",
+        null=True,
+        verbose_name="top site image",
+        help_text="image size: w-1000px x h-480",
+    )
+
+    bottom_img = models.ImageField(
+        upload_to="brand-gallery",
+        null=True,
+        verbose_name="bottom site image",
+        help_text="image size: w-1000px x h-480",
+    )
+
+    def __str__(self):
+        return f"{self.obj_name}"
+
+    class Meta:
+        verbose_name = "Brand Gallery"
+        verbose_name_plural = "Brand Gallery"
+
+
+class PartnerCompanyModel(models.Model):
+    partner_name = models.CharField(null=True, max_length=125, verbose_name="partner company name")
+    logo = models.ImageField(
+        upload_to="partner-company-logos",
+        null=True,
+        help_text="image size: w-230px x h-140",
+    )
+
+    def __str__(self):
+        return f"{self.partner_name} | N.B: you can add only 6 objects in this table."
+
+    class Meta:
+        verbose_name = "Partner Company Logo"
+        verbose_name_plural = "Partner Company Logos"
+        
+
+
+class ShortAboutInfoModel(models.Model):
+    title = models.CharField(null=True, max_length=200)
+    summary = models.TextField(null=True, max_length=555)
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = "Short About Information"
+        verbose_name_plural = "Short About Informations"
+
+
+class IntroVideoModel(models.Model):
+    title = models.CharField(null=True, max_length=200, default="Gemotex Intro Video")
+    link = models.URLField(null=True, verbose_name="video link")
+    thumbnail = models.ImageField(
+        upload_to="intro-thumbnail",
+        null=True,
+        verbose_name="video thumbnail",
+        help_text="image size: w-1920px x h-700px",
+    )
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = "Introduction Video"
+        verbose_name_plural = "Introduction Video"
+
+
+class AboutCardModel(models.Model):
+    title = models.CharField(null=True, max_length=150)
+    sub_title = models.CharField(null=True, max_length=50)
+    btn_text = models.CharField(null=True, max_length=100)
+    btn_link = models.URLField(null=True, verbose_name="video link")
+    details = models.TextField(null=True, max_length=525, verbose_name="card details")
+    card_img = models.ImageField(
+        upload_to="about-card-images",
+        null=True,
+        verbose_name="card image",
+        help_text="image size: w-800px x h-800px",
+    )
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = "About Card"
+        verbose_name_plural = "About Cards"
+
+
+
+class AboutVideoModel(models.Model):
+    title = models.CharField(null=True, max_length=200, default="Gemotex About Video")
+    link = models.URLField(null=True, verbose_name="video link")
+    thumbnail = models.ImageField(
+        upload_to="about-thumbnail",
+        null=True,
+        verbose_name="video thumbnail",
+        help_text="image size: w-1920px x h-700px",
+    )
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = "About Video"
+        verbose_name_plural = "About Video"
+
+
+
 class ReviewModel(models.Model):
     details = models.TextField(null=True, max_length=525, verbose_name="client comment")
     profile = models.ImageField(

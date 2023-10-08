@@ -95,22 +95,19 @@
   </div>
 </section>
 
+{% if info_obj %}
 <section class="my-8 bg-zinc-900 py-8 md:my-16 md:py-16">
   <div class="wrapper container py-12 text-white">
     <div class="grid gap-6 lg:grid-cols-5 lg:gap-12 xl:gap-24">
       <h2
         class="flex flex-col justify-between text-3xl font-semibold after:mt-4 after:block after:h-1 after:w-28 after:bg-blue-500 md:text-4xl lg:col-span-2 lg:text-5xl"
       >
-        Cut from a different cloth.
+        {{ info_obj.title }}
       </h2>
       <p
         class="text-sm tracking-wider text-zinc-200 md:text-lg md:leading-relaxed lg:col-span-3 lg:leading-loose"
       >
-        Gemotex is a globally recognized leader in garments procurement,
-        renowned for delivering efficient, quality-driven solutions to
-        businesses within the fashion industry. Our expertise in seamless
-        sourcing and supply chain management has earned us the trust of
-        clients worldwide.
+        {{ info_obj.summary }}
       </p>
     </div>
     <div class="mt-8 flex justify-start lg:justify-center">
@@ -122,11 +119,16 @@
     </div>
   </div>
 </section>
+{% endif %}
+
+<!-- brand gallery start -->
+{% with brand_gallery_obj as bgobj %}
+{% if bgobj %}
 <section class="py-8 md:py-16">
   <div class="section-wrapper container grid gap-4 lg:grid-cols-2">
     <div class="group relative h-full w-full">
       <img
-        src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/home-3-img-1.jpg"
+        src="{{ bgobj.left_img.url }}"
         alt=""
         class="block aspect-square h-full w-full object-cover"
       />
@@ -152,13 +154,13 @@
             <span
               class="-mb-4 inline-block text-xs font-semibold uppercase text-zinc-600"
             >
-              RANG
+              {{ bgobj.product.category.category_name }}
             </span>
             <h4 class="text-xl font-bold uppercase text-zinc-900">
-              HIKING SHIRT
+              {{ bgobj.product.title }}
             </h4>
           </div>
-          <span class="font-semibold">$45</span>
+          <span class="font-semibold">{{ bgobj.product.subcategory.subcategory_name }}</span>
         </div>
       </div>
       <span
@@ -170,14 +172,14 @@
     <div class="flex h-full flex-col gap-4">
       <div class="h-full">
         <img
-          src="https://dunker.qodeinteractive.com/wp-content/uploads/2022/12/h4-img-2.jpg"
+          src="{{ bgobj.top_img.url }}"
           alt=""
           class="block aspect-[2/1] w-full object-cover"
         />
       </div>
       <div class="h-full">
         <img
-          src="https://dunker.qodeinteractive.com/wp-content/uploads/2022/12/h4-img-1.jpg"
+          src="{{ bgobj.bottom_img.url }}"
           alt=""
           class="block aspect-[2/1] w-full object-cover"
         />
@@ -185,19 +187,23 @@
     </div>
   </div>
 </section>
+{% endif %}
+{% endwith %}
+<!-- brand gallery end -->
 
+{% if intro_video %}
 <section class="py-8 md:py-16">
   <div
     class="wrapper relative isolate grid aspect-[2/1] place-items-center md:aspect-[3/1]"
   >
     <img
-      src="https://dunker.qodeinteractive.com/wp-content/uploads/2022/12/h1-video-img-1.jpg"
+      src="{{ intro_video.thumbnail.url }}"
       alt=""
       class="absolute inset-0 -z-10 h-full w-full object-cover"
     />
     <a
-      href="#"
-      class="group relative isolate grid aspect-square w-20 place-items-center"
+      href="{{ intro_video.link }}"
+      class="open-popup-link group relative isolate grid aspect-square w-20 place-items-center"
     >
       <div
         class="absolute inset-0 -z-10 scale-0 rounded-full bg-zinc-900 transition-transform duration-500 group-hover:scale-100"
@@ -208,6 +214,7 @@
     </a>
   </div>
 </section>
+{% endif %}
 
 <section class="py-8 md:py-16">
   <div class="wrapper container">
@@ -265,65 +272,27 @@
   </div>
 </section>
 
+{% with partner_company_logos as pclogos %}
+{% if pclogos %}
 <section class="mb-8 py-8 md:mb-16 md:py-16">
   <div
     class="wrapper container grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
   >
+  {% for logo in pclogos %}
     <div
       class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-700 xl:aspect-[5/3]"
     >
       <img
-        src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/inner-png-15.png"
+        src="{{ logo.logo.url }}"
         alt=""
         class="h-full w-full object-cover"
       />
     </div>
-    <div
-      class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-800 xl:aspect-[5/3]"
-    >
-      <img
-        src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/inner-png-12.png"
-        alt=""
-        class="h-full w-full object-cover"
-      />
-    </div>
-    <div
-      class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-800 xl:aspect-[5/3]"
-    >
-      <img
-        src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/inner-png-19.png"
-        alt=""
-        class="h-full w-full object-cover"
-      />
-    </div>
-    <div
-      class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-800 xl:aspect-[5/3]"
-    >
-      <img
-        src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/inner-png-11.png"
-        alt=""
-        class="h-full w-full object-cover"
-      />
-    </div>
-    <div
-      class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-800 xl:aspect-[5/3]"
-    >
-      <img
-        src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/inner-png-20.png"
-        alt=""
-        class="h-full w-full object-cover"
-      />
-    </div>
-    <div
-      class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-800 xl:aspect-[5/3]"
-    >
-      <img
-        src="https://dunker.qodeinteractive.com/wp-content/uploads/2023/01/inner-png-14.png"
-        alt=""
-        class="h-full w-full object-cover"
-      />
-    </div>
+    {% endfor %}
+    
   </div>
 </section>
+{% endif %}
+{% endwith %}
 
 {% endblock main_content %}
