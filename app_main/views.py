@@ -9,6 +9,12 @@ from app_main.models import (
     ProductModel,
     ProductSubcategoryModel,
     ProductCategoryModel,
+    BrandGalleryModel,
+    PartnerCompanyModel,
+    ShortAboutInfoModel,
+    IntroVideoModel,
+    AboutCardModel,
+    AboutVideoModel,
 )
 
 # Create your views here.
@@ -22,11 +28,20 @@ class IndexView(TemplateView):
         context["products"] = ProductModel.objects.all()[:4]
         context["slider_qs"] = HeaderSliderModel.objects.filter(active=True)
         context["review_qs"] = ReviewModel.objects.all()
+        context["brand_gallery_obj"] = BrandGalleryModel.objects.all().first()
+        context["partner_company_logos"] = PartnerCompanyModel.objects.all()[:6]
+        context["info_obj"] = ShortAboutInfoModel.objects.all().first()
+        context["intro_video"] = IntroVideoModel.objects.all().first()
         return context
 
 
 class AboutView(TemplateView):
     template_name = "app_main/about.html"
+    def get_context_data(self, **kwargs: Any):
+        context = super().get_context_data(**kwargs)
+        context["cards_qs"] = AboutCardModel.objects.all()
+        context["about_video_obj"] = AboutVideoModel.objects.first()
+        return context
 
 
 class ContactView(TemplateView):

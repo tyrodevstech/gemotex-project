@@ -8,6 +8,12 @@ from .models import (
     FooterInformationModel,
     HeaderSliderModel,
     ReviewModel,
+    BrandGalleryModel,
+    PartnerCompanyModel,
+    ShortAboutInfoModel,
+    IntroVideoModel,
+    AboutCardModel,
+    AboutVideoModel,
 )
 
 
@@ -43,6 +49,13 @@ class ProductSubcategoryAdmin(admin.ModelAdmin):
 class ContactInformationAdmin(admin.ModelAdmin):
     list_display = ("id", "details", "phone", "email", "address", "work")
 
+    def has_add_permission(self, request):
+        num_objects = self.model.objects.count()
+        if num_objects >= 1:
+            return False
+        else:
+            return True
+
 
 class FooterInformationAdmin(admin.ModelAdmin):
     list_display = (
@@ -53,6 +66,13 @@ class FooterInformationAdmin(admin.ModelAdmin):
         "instagram_link",
         "youtube_link",
     )
+
+    def has_add_permission(self, request):
+        num_objects = self.model.objects.count()
+        if num_objects >= 1:
+            return False
+        else:
+            return True
 
 
 # Register the other models with their respective admin classes
@@ -74,3 +94,72 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ReviewModel, ReviewAdmin)
+
+
+class BrandGalleryAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        num_objects = self.model.objects.count()
+        if num_objects >= 1:
+            return False
+        else:
+            return True
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "product":
+            kwargs["queryset"] = ProductModel.objects.all()  # Replace YourAuthorModel with your actual Author model
+            kwargs["empty_label"] = "Select a product"  # Customize the empty label
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+admin.site.register(BrandGalleryModel, BrandGalleryAdmin)
+
+
+class PartnerCompanyAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        num_objects = self.model.objects.count()
+        if num_objects >= 6:
+            return False
+        else:
+            return True
+
+admin.site.register(PartnerCompanyModel, PartnerCompanyAdmin)
+
+
+
+class ShortAboutInfoAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        num_objects = self.model.objects.count()
+        if num_objects >= 1:
+            return False
+        else:
+            return True
+
+admin.site.register(ShortAboutInfoModel, ShortAboutInfoAdmin)
+
+
+
+class IntroVideoAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        num_objects = self.model.objects.count()
+        if num_objects >= 1:
+            return False
+        else:
+            return True
+
+admin.site.register(IntroVideoModel, IntroVideoAdmin)
+
+
+class AboutCardAdmin(admin.ModelAdmin):
+    list_display = ("sub_title", "title")
+
+admin.site.register(AboutCardModel, AboutCardAdmin)
+
+
+class AboutVideoAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        num_objects = self.model.objects.count()
+        if num_objects >= 1:
+            return False
+        else:
+            return True
+
+admin.site.register(AboutVideoModel, AboutVideoAdmin)

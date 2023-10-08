@@ -20,17 +20,19 @@
       <!-- cover image end -->
 
       <!-- about content start -->
+      {% if cards_qs %}
       <section id="about-content-form" class="my-8 py-8 md:my-16 md:py-16">
-        <!-- item one -->
+        {% for card in cards_qs %}
+        {% if forloop.counter|divisibleby:2 %}
         <div
           class="container mb-6 md:mb-0 flex flex-col items-center justify-center md:flex-row md:justify-center"
         >
           <div class="w-full md:w-1/2 px-0 md:px-24 py-8">
-              <p class="text-xs uppercase mb-2">New Collection</p>
+              <p class="text-xs uppercase mb-2">{{ card.sub_title }}</p>
               <h2 class="mb-6 text-4xl lg:text-6xl font-bold uppercase text-neutral-900">
-                  THE ULTIMATE STREET VIBE
+                {{ card.title }}
               </h2>
-              <p class="text-sm text-neutral-900">Lorem ipsum dolor sit amet, consectetur adipiscing elit ellent, esque eget massa ac urna finibus fringilla nonpon mauris sit amet nisl in nunc pharetra.</p>
+              <p class="text-sm text-neutral-900">{{ card.details }}</p>
               <button
                   type="text"
                   class="mt-12 border-[1.5px] border-neutral-900 px-8 py-4 font-sans text-xs font-bold uppercase hover:bg-neutral-900 hover:text-white hover:duration-1000"
@@ -42,14 +44,13 @@
               <div class="relative h-[44rem] w-full">
                   <img
                     class="absolute inset-0 -z-10 h-full w-full object-cover"
-                    src="https://dunker.qodeinteractive.com/wp-content/uploads/2022/12/About-us-img-1.jpg"
-                    alt="about-img-1"
+                    src="{{card.card_img.url}}"
+                    alt="about-img-{{ forloop.counter }}"
                   />
                 </div>
           </div>
         </div>
-
-        <!-- item two -->
+        {% else %}
         <div
           class="container flex flex-col items-center justify-center md:flex-row md:justify-center"
         >
@@ -57,42 +58,46 @@
               <div class="relative h-[44rem] w-full">
                   <img
                     class="absolute inset-0 -z-10 h-full w-full object-cover"
-                    src="https://dunker.qodeinteractive.com/wp-content/uploads/2022/12/About-us-img-02.jpg"
-                    alt="about-img-1"
+                    src="{{card.card_img.url}}"
+                    alt="about-img-{{ forloop.counter }}"
                   />
                 </div>
           </div>
           <div class="w-full md:w-1/2 px-0 md:px-24 py-8">
-              <p class="text-xs uppercase mb-2">New Collection</p>
+              <p class="text-xs uppercase mb-2">{{ card.sub_title }}</p>
               <h2 class="mb-6 text-4xl lg:text-6xl font-bold uppercase text-neutral-900">
-                STREET VIBE
+                {{ card.title }}
               </h2>
               <p class="mb-6 text-sm text-neutral-900">
-                Donec leo ligula, pulvinar id lectus ut, fringilla laoeet feli, queue ipsum efficitu Fusce lacinia augue vitae nibh grav. Donec dapibus ne queue ipsum efficitu uspendisse.
+                {{ card.details }}
               </p>
 
-              <ul class="text-sm text-neutral-900 list-disc ml-6 leading-6">
+              <!-- <ul class="text-sm text-neutral-900 list-disc ml-6 leading-6">
                 <li>Fusce lacinia augue vitae nibh gravida rhoncus.</li>
                 <li>Sed eget varius neque. Vivamus id varius dui. Etiam  ibus ligula sit amet ex maleonec eu ibend.</li>
-              </ul>
+              </ul> -->
           </div>
         </div>
+        {% endif %}
+        {% endfor %}
       </section>
+      {% endif %}
       <!-- about content end -->
 
       <!-- about video start -->
+      {% if about_video_obj %}
       <section class="py-8 md:py-16">
         <div
           class="wrapper relative isolate grid aspect-[2/1] place-items-center md:aspect-[3/1]"
         >
           <img
-            src="https://dunker.qodeinteractive.com/wp-content/uploads/2022/12/About-us-img-03.jpg"
+            src="{{ about_video_obj.thumbnail.url }}"
             alt=""
             class="absolute inset-0 -z-10 h-full w-full object-cover"
           />
           <a
-            href="#"
-            class="group relative isolate grid aspect-square w-20 place-items-center"
+            href="{{ about_video_obj.link }}"
+            class="open-popup-link group relative isolate grid aspect-square w-20 place-items-center"
           >
             <div
               class="absolute inset-0 -z-10 scale-0 rounded-full bg-neutral-900 transition-transform duration-500 group-hover:scale-100"
@@ -103,6 +108,7 @@
           </a>
         </div>
       </section>
+      {% endif %}
       <!-- about video end -->
 
       <!-- terms & policy start -->
