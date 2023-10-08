@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+
 
 # Define Product Category Model
 class ProductCategoryModel(models.Model):
@@ -28,6 +30,20 @@ class ProductSubcategoryModel(models.Model):
     class Meta:
         verbose_name = "Product Subcategory"
         verbose_name_plural = "Product Subcategories"
+        unique_together = (("category", "subcategory_name"),)  # Unique constraint
+
+    # def clean(self):
+    #     # Custom validation to check uniqueness within the same category
+    #     existing_subcategories = ProductSubcategoryModel.objects.filter(
+    #         category=self.category,
+    #         subcategory_name=self.subcategory_name
+    #     )
+
+    #     if self.pk:  # Exclude self when checking for uniqueness during update
+    #         existing_subcategories = existing_subcategories.exclude(pk=self.pk)
+
+    #     if existing_subcategories.exists():
+    #         raise ValidationError("Subcategory with the same name already exists in this category.")
 
 
 # Define Product Model

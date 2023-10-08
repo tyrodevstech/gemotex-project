@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.urls import path
+from django.http import JsonResponse
 from .models import (
     ProductCategoryModel,
     ProductSubcategoryModel,
@@ -25,6 +27,26 @@ class ProductModelAdmin(admin.ModelAdmin):
 
     # Add the inline for ProductImagesModel
     inlines = [ProductImagesAdmin]
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path('load_subcategories/', self.load_subcategories, name='load_subcategories'),
+        ]
+        print(custom_urls)
+        return custom_urls + urls
+    
+    def load_subcategories(self, request):
+        category_id = request.GET.get('category_id')
+        subcategories = ProductSubcategoryModel.objects.filter(category_id=category_id)
+        data = [{'id': subcategory.id, 'name': subcategory.subcategory_name} for subcategory in subcategories]
+        return JsonResponse({'subcategories': data})
+    
+    class Media:
+        js = (
+            'https://code.jquery.com/jquery-3.6.0.min.js',  # Replace with the appropriate jQuery version
+            'js/chained_select.js',  # Create a JavaScript file for chained selects
+        )
 
 
 # Register the ProductModelAdmin
