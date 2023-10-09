@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 DEFAULT_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -142,3 +143,156 @@ else:
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+ADMIN_REORDER = (
+    # models with custom name
+    {'app': 'app_main', 'label': 'Home', 'models': (
+        {'model': 'app_main.HeaderSliderModel', 'label': 'Header Sliders'},
+        {'model': 'app_main.BrandGalleryModel', 'label': 'Brand Gallery'},
+        {'model': 'app_main.PartnerCompanyModel', 'label': 'Partner Company'},
+        {'model': 'app_main.ShortAboutInfoModel', 'label': 'Short About'},
+        {'model': 'app_main.IntroVideoModel', 'label': 'Intro Video'},
+        {'model': 'app_main.ReviewModel', 'label': 'Reviews'},
+    )},
+    {'app': 'app_main', 'label': 'About', 'models': (
+        {'model': 'app_main.AboutCardModel', 'label': 'Sections'},
+        {'model': 'app_main.AboutVideoModel', 'label': 'Video'},
+        {'model': 'app_main.ImportantDateModel', 'label': 'Important Dates'},
+    )},
+
+    {'app': 'app_main', 'label': 'Contact', 'models': (
+        {'model': 'app_main.ContactInformationModel', 'label': 'Contact Infos'},
+    )},
+    {'app': 'app_main', 'label': 'Extra', 'models': (
+        {'model': 'app_main.FooterInformationModel', 'label': 'Admission'},
+    )},
+    {'app': 'app_main', 'label': 'Product', 'models': (
+        {'model': 'app_main.ProductCategoryModel', 'label': 'Category'},
+        {'model': 'app_main.ProductSubcategoryModel', 'label': 'Subcategory'},
+        {'model': 'app_main.ProductModel', 'label': 'Products'},
+        {'model': 'app_main.ProductImagesModel', 'label': 'Products  Images'},
+    )},
+    # Reorder app models
+    {'app': 'auth', 'label':'Users and Groups', 'models': ('auth.User', 'auth.Group')},
+)
+
+
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Gemotex Admin",
+
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "Gemotex Admin",
+
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "Gemotex Admin",
+
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    "site_logo": "favicon/favicon-32x32.png",
+
+    # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
+    "login_logo": 'images/gemotex.png',
+
+    # Logo to use for login form in dark themes (defaults to login_logo)
+    "login_logo_dark": None,
+
+    # CSS classes that are applied to the logo above
+    "site_logo_classes": "",
+
+    # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
+    "site_icon": 'assets/images/favicons/favicon-32x32.png',
+
+    # Welcome text on the login screen
+    "welcome_sign": "Welcome to the Gemotex Admin",
+
+    # Copyright on the footer
+    # "copyright": "Acme Library Ltd",
+
+    # List of model admins to search from the search bar, search bar omitted if excluded
+    # If you want to use a single search field you dont need to use a list, you can use a simple string
+    # "search_model": ["auth.User", "auth.Group"],
+
+    # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
+    "user_avatar": None,
+
+    ############
+    # Top Menu #
+    ############
+
+    # Links to put along the top menu
+    "topmenu_links": [
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home",  "url": "admin:index",
+            "permissions": ["auth.view_user"]},
+
+        # model admin to link to (Permissions checked against model)
+        {"model": "auth.User"},
+    ],
+
+    #############
+    # Side Menu #
+    #############
+
+    # Whether to display the side menu
+    "show_sidebar": True,
+    # Whether to aut expand the menu
+    "navigation_expanded": True,
+
+    "related_modal_active": True,
+    # Whether to link font from fonts.googleapis.com (use custom_css to supply font otherwise)
+    "use_google_fonts_cdn": True,
+
+    "default_icon_parents": "fas fa-th-list",
+
+    "show_ui_builder" : True,
+
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": True,
+    "brand_small_text": False,
+    "brand_colour": False,
+    "accent": "accent-lightblue",
+    "navbar": "navbar-white navbar-light",
+    "no_navbar_border": True,
+    "navbar_fixed": False,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": True,
+    "sidebar_nav_legacy_style": True,
+    "sidebar_nav_flat_style": True,
+    "theme": "flatly",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    },
+    "actions_sticky_top": True
+}
+
+X_FRAME_OPTIONS = "SAMEORIGIN"
+
+
+# EMAIL_HOST = 'webmail.aub.ac.bd'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'info@gemotexsourcing.com'
+EMAIL_HOST_PASSWORD = 'support_aub'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = 'Gemotex <info@gemotexsourcing.com>'

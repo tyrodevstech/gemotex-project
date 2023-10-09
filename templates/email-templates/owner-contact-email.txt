@@ -1,0 +1,16 @@
+{% autoescape off %}
+Hello,
+
+We have received a new contact form submission through our website. Here are the details:
+
+Sender's Information:
+- Name: {{client_name}}
+- Email Address: {{client_email}}
+
+Message:
+{{client_message}}
+
+
+Best regards,
+Gemotex Team
+{% endautoescape %}

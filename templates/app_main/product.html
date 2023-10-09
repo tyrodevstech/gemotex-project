@@ -4,19 +4,11 @@
 {% block main_content %}
 
 <div class="breadcrumbs container pt-8">
-  <div
-    class="flex items-center uppercase font-semibold gap-4 overflow-x-auto whitespace-nowrap text-sm"
-  >
+  <div class="flex items-center uppercase font-semibold gap-4 overflow-x-auto whitespace-nowrap text-sm">
     <a href="/" class="flex items-center gap-2 text-zinc-500 hover:text-zinc-950 hover:underline">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
         <path
-          d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
-        />
+          d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
       </svg>
       Home
     </a>
@@ -33,7 +25,7 @@
 <section class="my-8 py-4 md:my-16 md:py-8">
   <div class="wrapper container">
     <div class="mb-16 grid grid-cols-1 items-start gap-8 md:grid-cols-5 md:gap-12 lg:gap-16">
-      <div class="relative w-full border-2 transition-all duration-300 hover:border-neutral-700 md:col-span-2">
+      <div class="relative w-full border-2 transition-all duration-300 hover:border-zinc-700 md:col-span-2">
         <img id="main-image" src="{% if product.cover_image %}{{product.cover_image.url}}{% endif %}" alt=""
           class="aspect-square h-auto w-full object-cover" />
       </div>
@@ -42,25 +34,24 @@
           {{product.title}}
         </h2>
         <p
-          class="mt-5 line-clamp-4 text-sm leading-normal tracking-wider text-neutral-700 md:mt-8 md:text-base md:leading-relaxed">
+          class="mt-5 line-clamp-4 text-sm leading-normal tracking-wider text-zinc-700 md:mt-8 md:text-base md:leading-relaxed">
           {{product.details}}
         </p>
         <div class="mt-4 flex flex-wrap gap-5 md:mt-8">
-          <div class="relative flex w-32 flex-row rounded border border-neutral-300 bg-transparent px-4">
+          <div class="relative flex w-32 flex-row rounded border border-zinc-300 bg-transparent px-4">
             <button data-action="decrement"
-              class="h-full w-20 cursor-pointer rounded-l text-neutral-600 outline-none hover:text-black">
+              class="h-full w-20 cursor-pointer rounded-l text-zinc-600 outline-none hover:text-black">
               <span class="m-auto text-2xl font-thin">−</span>
             </button>
             <input type="number"
-              class="text-md md:text-basecursor-default flex w-full items-center bg-transparent text-center font-semibold text-neutral-700 outline-none hover:text-black focus:text-black focus:outline-none"
+              class="text-md md:text-basecursor-default flex w-full items-center bg-transparent text-center font-semibold text-zinc-700 outline-none hover:text-black focus:text-black focus:outline-none"
               name="custom-input-number" value="0" />
-            <button data-action="increment"
-              class="rounded- h-full w-20 cursor-pointer text-neutral-600 hover:text-black">
+            <button data-action="increment" class="rounded- h-full w-20 cursor-pointer text-zinc-600 hover:text-black">
               <span class="m-auto text-2xl font-thin">+</span>
             </button>
           </div>
-          <button
-            class="flex items-center justify-center gap-3 rounded border border-gray-300 bg-gray-200 px-5 py-2 transition-colors hover:bg-neutral-950 hover:text-white">
+          <button id="openModal"
+            class="flex items-center justify-center gap-3 rounded border border-zinc-300 bg-zinc-200 px-5 py-2 transition-colors hover:bg-zinc-950 hover:text-white">
             Add to cart
             <i class="ti ti-shopping-bag"></i>
           </button>
@@ -89,11 +80,11 @@
       </div>
     </div>
     <div class="tabs">
-      <div class="flex flex-wrap gap-6 border-y border-neutral-300 py-6">
+      <div class="flex flex-wrap gap-6 border-y border-zinc-300 py-6">
         <a href="#description" class="tab-link">Description</a>
         <a href="#additional_infos" class="tab-link">Additional Information</a>
       </div>
-      <div class="mt-8 text-sm text-neutral-700 md:text-base">
+      <div class="mt-8 text-sm text-zinc-700 md:text-base">
         <div class="tab-content hidden" id="description">
           {{product.details}}
         </div>
@@ -104,7 +95,51 @@
     </div>
   </div>
 </section>
-{% endblock main_content %} {% block script %}
+
+
+<div id="modal" class="hidden fixed inset-0 z-10 overflow-y-auto grid place-items-center bg-zinc-700/50"
+  aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div
+    class="relative flex flex-col overflow-hidden text-left transition-all bg-white rounded-lg shadow-xl sm:max-w-sm sm:w-full sm:p-6">
+    <div>
+      <h3 class="text-xl font-bold mb-2 text-zinc-800 capitalize flex items-center" id="modal-title"><i
+          class="ti ti-info-hexagon mr-2"></i> Confirmation</h3>
+      <p class="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
+        Are you sure you want to deal with us with this following product?
+        <span class="font-semibold ml-2">(Product-ID : {{product.id}})</span>
+      </p>
+    </div>
+    <form class="w-full mt-2" method="post">
+      {% csrf_token %}
+      <label for="emails-list" class="text-xs text-zinc-700 inline-block">
+        Name
+      </label>
+      <input type="text" name="client_name" placeholder="name" required
+        class="block w-full px-4 py-2 text-sm text-zinc-700 bg-white border border-zinc-200 rounded-md focus:border-zinc-400 focus:outline-none focus:ring focus:ring-zinc-300 focus:ring-opacity-40" />
+      <label for="emails-list" class="text-xs text-zinc-700  mt-2 inline-block">
+        Email address
+      </label>
+      <input type="email" name="client_email" placeholder="email" required
+        class="block w-full px-4 py-2 text-sm text-zinc-700 bg-white border border-zinc-200 rounded-md focus:border-zinc-400 focus:outline-none focus:ring focus:ring-zinc-300 focus:ring-opacity-40" />
+
+      <div class="sm:flex sm:items-center justify-between mt-4 gap-6 ">
+        <button id="closeModal"
+          class="w-full px-4 py-2 text-sm font-medium tracking-wide text-zinc-700 capitalize transition-colors duration-300 border border-zinc-200 rounded-md hover:bg-zinc-100 focus:outline-none focus:ring focus:ring-zinc-300 focus:ring-opacity-40">
+          Cancel
+        </button>
+
+        <button
+          class="w-full px-4 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 bg-zinc-700 rounded-md hover:bg-zinc-600 focus:outline-none focus:ring focus:ring-zinc-300 focus:ring-opacity-40">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock main_content %}
+
+{% block script %}
 
 <script>
   // Function to switch tabs
@@ -145,7 +180,7 @@
     // Function to change the main image when a thumbnail is clicked
     function changeImage(event) {
       const clickedThumbnail = event.target;
-      
+
       // Remove the "active" class from all thumbnails
       thumbnails.forEach((thumbnail) => {
         thumbnail.classList.remove("border-zinc-950");
@@ -160,6 +195,18 @@
     thumbnails.forEach((thumbnail) => {
       thumbnail.addEventListener("click", changeImage);
     });
+  });
+
+  const openModalButton = document.getElementById('openModal');
+  const closeModalButton = document.getElementById('closeModal');
+  const modal = document.getElementById('modal');
+
+  openModalButton.addEventListener('click', () => {
+    modal.classList.remove('hidden');
+  });
+
+  closeModalButton.addEventListener('click', () => {
+    modal.classList.add('hidden');
   });
 
 </script>

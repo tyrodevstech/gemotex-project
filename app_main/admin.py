@@ -39,7 +39,6 @@ class ProductModelAdmin(admin.ModelAdmin):
         custom_urls = [
             path('load_subcategories/', self.load_subcategories, name='load_subcategories'),
         ]
-        print(custom_urls)
         return custom_urls + urls
     
     def load_subcategories(self, request):

@@ -1,85 +1,84 @@
 <nav class="w-full bg-white sticky top-0 z-50" aria-label="Global">
-    <div class="nav-wrapper container flex h-16 items-center justify-between">
-      <div class="flex w-full items-center justify-between md:w-auto">
-        <a class="brand-link" href="{% url 'app_main:home' %}">Gemotex</a>
-        <div class="nav-icons flex items-center gap-4 md:hidden">
+  <div class="nav-wrapper container flex h-16 items-center justify-between">
+    <div class="flex w-full items-center justify-between md:w-auto">
+      <a class="brand-link" href="{% url 'app_main:home' %}">Gemotex</a>
+      <div class="nav-icons flex items-center gap-4 md:hidden">
+        <a href="admin/" class="grid place-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+          </svg>
+        </a>
+        <button
+          class="nav-toggle-btn inline-flex items-center justify-center gap-2 rounded-md border bg-white p-2 align-middle text-sm text-zinc-700 shadow-sm transition-all hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-600 focus:ring-offset-2 focus:ring-offset-white">
+          <i class="ti ti-menu-2"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="navbar" class="">
+      <ul class="nav-menu">
+        <li>
+          <a class="nav-link active" href="/">Home</a>
+        </li>
+
+        <li class="dropdown [--strategy:static] md:[--strategy:absolute]">
+          <button type="button" class="nav-link menu-toggle-btn flex items-center gap-x-5">
+            Products
+            <i class="ti ti-chevron-down"></i>
+          </button>
+
+          <ul class="dropdown-menu">
+            <li><a class="menu-link" href="{% url 'app_main:product_list' %}">All Category</a></li>
+            {% for category in categories %}
+            <li class="submenu__left submenu [--strategy:static] md:[--strategy:absolute]">
+              <button type="button" class="submenu-btn menu-toggle-btn">
+                {{category.category_name}}
+                <i class="ti ti-chevron-right rotate-90 md:rotate-0"></i>
+              </button>
+              <ul class="submenu-menu">
+
+                <li><a class="menu-link"
+                    href="{% url 'app_main:product_list' %}?category={{category.category_name}}">All Subcategory</a>
+                </li>
+                {% for subcategory in category.subcategories.all %}
+                <li><a class="menu-link"
+                    href="{% url 'app_main:product_list' %}?category={{category.category_name}}&subcategory={{subcategory.subcategory_name}}">{{subcategory.subcategory_name}}</a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+
+        <li class="">
+          <a class="nav-link" href="{% url 'app_main:contact' %}">Contact</a>
+        </li>
+        <li class="">
+          <a class="nav-link" href="{% url 'app_main:about' %}">About</a>
+        </li>
+        <li class="hidden md:inline-block">
           <a href="admin/" class="grid place-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24"
+              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
               <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-           </svg>
+            </svg>
           </a>
-          <button
-            class="nav-toggle-btn inline-flex items-center justify-center gap-2 rounded-md border bg-white p-2 align-middle text-sm text-zinc-700 shadow-sm transition-all hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-zinc-600 focus:ring-offset-2 focus:ring-offset-white"
-          >
-            <i class="ti ti-menu-2"></i>
-          </button>
-        </div>
-      </div>
+        </li>
 
-      <div id="navbar" class="">
-        <ul class="nav-menu">
-          <li>
-            <a class="nav-link active" href="/">Home</a>
-          </li>
-
-          <li class="dropdown [--strategy:static] md:[--strategy:absolute]">
-            <button
-              type="button"
-              class="nav-link menu-toggle-btn flex items-center gap-x-5"
-            >
-              Products
-              <i class="ti ti-chevron-down"></i>
-            </button>
-
-            <ul class="dropdown-menu">
-              <li><a class="menu-link" href="{% url 'app_main:product_list' %}">All Category</a></li>
-              {% for category in categories %}
-              <li
-                class="submenu__left submenu [--strategy:static] md:[--strategy:absolute]"
-              >
-                <button type="button" class="submenu-btn menu-toggle-btn">
-                  {{category.category_name}}
-                  <i class="ti ti-chevron-right rotate-90 md:rotate-0"></i>
-                </button>
-                <ul class="submenu-menu">
-
-                  <li><a class="menu-link" href="{% url 'app_main:product_list' %}?category={{category.category_name}}">All Subcategory</a></li>
-                  {% for subcategory in category.subcategories.all %}
-                  <li><a class="menu-link" href="{% url 'app_main:product_list' %}?category={{category.category_name}}&subcategory={{subcategory.subcategory_name}}">{{subcategory.subcategory_name}}</a></li>
-                  {% endfor %}
-                </ul>
-              </li>
-              {% endfor %}
-            </ul>
-          </li>
-
-          <li class="">
-            <a class="nav-link" href="{% url 'app_main:contact' %}">Contact</a>
-          </li>
-          <li class="">
-            <a class="nav-link" href="{% url 'app_main:about' %}">About</a>
-          </li>
-          <li class="hidden md:inline-block">
-            <a href="admin/" class="grid place-items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
-                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-             </svg>
-            </a>
-          </li>
-
-          <li class="mt-4 inline-block md:mt-0">
-            <a
-              href="admin/"
-              class="rounded-sm bg-neutral-800 px-3 py-1.5 text-sm text-white"
-            >
-              Admin
-            </a>
-          </li>
-        </ul>
-      </div>
+        <li class="mt-4 inline-block md:mt-0">
+          <a href="admin/" class="rounded-sm bg-zinc-800 px-3 py-1.5 text-sm text-white">
+            Admin
+          </a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>

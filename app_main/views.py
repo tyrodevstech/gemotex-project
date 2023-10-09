@@ -17,6 +17,7 @@ from app_main.models import (
     AboutVideoModel,
 )
 
+from app_main.utils import send_owner_query_mail, send_client_query_mail, send_owner_contact_mail, send_client_contact_mail
 # Create your views here.
 
 
@@ -51,6 +52,15 @@ class ContactView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["contact"] = ContactInformationModel.objects.all().last()
         return context
+    
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        client_name = request.POST.get('client_name')
+        client_email = request.POST.get('client_email')
+        client_message = request.POST.get('client_message')
+        send_owner_contact_mail(client_name,client_email,client_message)
+        send_client_contact_mail(context['contact'],client_name,client_email,client_message)
+        return self.render_to_response(context)
 
 
 class ProductListView(ListView):
@@ -89,6 +99,15 @@ class ProductView(DetailView):
     template_name = "app_main/product.html"
     model = ProductModel
     context_object_name = "product"
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        client_name = request.POST.get('client_name')
+        client_email = request.POST.get('client_email')
+        send_owner_query_mail(self.object,client_name,client_email)
+        send_client_query_mail(self.object,client_name,client_email)
+        return self.render_to_response(context)
 
 
 def custom_page_not_found_view(request, exception=None):

@@ -1,0 +1,25 @@
+{% autoescape off %}
+Dear {{client_name}},
+
+We extend our sincere gratitude for your recent inquiry and the opportunity to serve you. 
+
+In response to your product query, we are committed to providing you with a prompt and comprehensive response via email. 
+
+The specific details of your product query are as follows:
+
+Inquirer's Information:
+- Name: {{client_name}}
+- Email Address: {{client_email}}
+
+Product Details:
+- Product ID: {{product_id}}
+- Product Name: {{product_title}}
+
+Should you require any additional information or further assistance, please do not hesitate to contact our dedicated team.
+
+We value your interest in our products and services and look forward to assisting you further.
+
+Warm regards,
+Gemotex Team
+
+{% endautoescape %}

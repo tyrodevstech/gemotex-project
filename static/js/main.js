@@ -75,3 +75,10 @@ window.addEventListener("load", (event) => {
 
 // Automatically hide preloader after 5 seconds
 setTimeout(hidePreloader, 5000);
+
+
+$(".open-popup-link").magnificPopup({
+  type: "iframe",
+  midClick: true,
+  mainClass: "mfp-fade",
+});

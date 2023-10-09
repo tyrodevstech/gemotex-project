@@ -1,0 +1,22 @@
+{% autoescape off %}
+Dear {{client_name}},
+
+Thank you for reaching out to us through our contact form. We appreciate your interest in our products/services.
+
+We have received your message with the following details:
+
+- Name: {{client_name}}
+- Email Address: {{client_email}}
+
+Message:
+{{client_message}}
+
+
+Our team will review your message and get back to you as soon as possible, typically within few hours.
+If you have any urgent matters or questions, feel free to reach out to us directly at {{contact.phone}}.
+
+Thanks again for contacting us. We look forward to assisting you.
+
+Best regards,
+Gemotex Team
+{% endautoescape %}

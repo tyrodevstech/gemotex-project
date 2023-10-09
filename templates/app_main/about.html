@@ -4,179 +4,167 @@
 
 {% block main_content %}
 
-      <!-- cover image start -->
-      <section id="about-cover-image">
-        <div class="relative isolate h-[32rem] w-full bg-black">
-          <img
-            class="absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
-            src="https://dunker.qodeinteractive.com/wp-content/uploads/2022/12/About-us-title-img.jpg"
-            alt="contact-cover"
-          />
-          <div class="pt-[14rem] text-center font-sans text-white">
-            <h2 class="text-4xl font-bold uppercase md:text-6xl">About US</h2>
-          </div>
-        </div>
-      </section>
-      <!-- cover image end -->
+<!-- cover image start -->
+<section id="about-cover-image">
+  <div class="relative isolate h-[32rem] w-full bg-black">
+    <img class="absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
+      src="https://dunker.qodeinteractive.com/wp-content/uploads/2022/12/About-us-title-img.jpg" alt="contact-cover" />
+    <div class="pt-[14rem] text-center font-sans text-white">
+      <h2 class="text-4xl font-bold uppercase md:text-6xl">About US</h2>
+    </div>
+  </div>
+</section>
+<!-- cover image end -->
 
-      <!-- about content start -->
-      {% if cards_qs %}
-      <section id="about-content-form" class="my-8 py-8 md:my-16 md:py-16">
-        {% for card in cards_qs %}
-        {% if forloop.counter|divisibleby:2 %}
-        <div
-          class="container mb-6 md:mb-0 flex flex-col items-center justify-center md:flex-row md:justify-center"
-        >
-          <div class="w-full md:w-1/2 px-0 md:px-24 py-8">
-              <p class="text-xs uppercase mb-2">{{ card.sub_title }}</p>
-              <h2 class="mb-6 text-4xl lg:text-6xl font-bold uppercase text-neutral-900">
-                {{ card.title }}
-              </h2>
-              <p class="text-sm text-neutral-900">{{ card.details }}</p>
-              <button
-                  type="text"
-                  class="mt-12 border-[1.5px] border-neutral-900 px-8 py-4 font-sans text-xs font-bold uppercase hover:bg-neutral-900 hover:text-white hover:duration-1000"
-                >
-                  Order Now
-              </button>
-          </div>
-          <div class="w-full md:w-1/2">
-              <div class="relative h-[44rem] w-full">
-                  <img
-                    class="absolute inset-0 -z-10 h-full w-full object-cover"
-                    src="{{card.card_img.url}}"
-                    alt="about-img-{{ forloop.counter }}"
-                  />
-                </div>
-          </div>
-        </div>
-        {% else %}
-        <div
-          class="container flex flex-col items-center justify-center md:flex-row md:justify-center"
-        >
-          <div class="w-full md:w-1/2">
-              <div class="relative h-[44rem] w-full">
-                  <img
-                    class="absolute inset-0 -z-10 h-full w-full object-cover"
-                    src="{{card.card_img.url}}"
-                    alt="about-img-{{ forloop.counter }}"
-                  />
-                </div>
-          </div>
-          <div class="w-full md:w-1/2 px-0 md:px-24 py-8">
-              <p class="text-xs uppercase mb-2">{{ card.sub_title }}</p>
-              <h2 class="mb-6 text-4xl lg:text-6xl font-bold uppercase text-neutral-900">
-                {{ card.title }}
-              </h2>
-              <p class="mb-6 text-sm text-neutral-900">
-                {{ card.details }}
-              </p>
+<!-- about content start -->
+{% if cards_qs %}
+<section id="about-content-form" class="my-8 py-8 md:my-16 md:py-16">
+  {% for card in cards_qs %}
+  {% if forloop.counter|divisibleby:2 %}
+  <div class="container mb-6 md:mb-0 flex flex-col items-center justify-center md:flex-row md:justify-center">
+    <div class="w-full md:w-1/2 px-0 md:px-24 py-8">
+      <p class="text-xs uppercase mb-2">{{ card.sub_title }}</p>
+      <h2 class="mb-6 text-4xl lg:text-6xl font-bold uppercase text-zinc-900">
+        {{ card.title }}
+      </h2>
+      <p class="text-sm text-zinc-900">{{ card.details }}</p>
+      <button type="text"
+        class="mt-12 border-[1.5px] border-zinc-900 px-8 py-4 font-sans text-xs font-bold uppercase hover:bg-zinc-900 hover:text-white hover:duration-1000">
+        Order Now
+      </button>
+    </div>
+    <div class="w-full md:w-1/2">
+      <div class="relative h-[44rem] w-full">
+        <img class="absolute inset-0 -z-10 h-full w-full object-cover" src="{{card.card_img.url}}"
+          alt="about-img-{{ forloop.counter }}" />
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="container flex flex-col items-center justify-center md:flex-row md:justify-center">
+    <div class="w-full md:w-1/2">
+      <div class="relative h-[44rem] w-full">
+        <img class="absolute inset-0 -z-10 h-full w-full object-cover" src="{{card.card_img.url}}"
+          alt="about-img-{{ forloop.counter }}" />
+      </div>
+    </div>
+    <div class="w-full md:w-1/2 px-0 md:px-24 py-8">
+      <p class="text-xs uppercase mb-2">{{ card.sub_title }}</p>
+      <h2 class="mb-6 text-4xl lg:text-6xl font-bold uppercase text-zinc-900">
+        {{ card.title }}
+      </h2>
+      <p class="mb-6 text-sm text-zinc-900">
+        {{ card.details }}
+      </p>
 
-              <!-- <ul class="text-sm text-neutral-900 list-disc ml-6 leading-6">
+      <!-- <ul class="text-sm text-zinc-900 list-disc ml-6 leading-6">
                 <li>Fusce lacinia augue vitae nibh gravida rhoncus.</li>
                 <li>Sed eget varius neque. Vivamus id varius dui. Etiam  ibus ligula sit amet ex maleonec eu ibend.</li>
               </ul> -->
-          </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-      </section>
-      {% endif %}
-      <!-- about content end -->
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+</section>
+{% endif %}
+<!-- about content end -->
 
-      <!-- about video start -->
-      {% if about_video_obj %}
-      <section class="py-8 md:py-16">
-        <div
-          class="wrapper relative isolate grid aspect-[2/1] place-items-center md:aspect-[3/1]"
-        >
-          <img
-            src="{{ about_video_obj.thumbnail.url }}"
-            alt=""
-            class="absolute inset-0 -z-10 h-full w-full object-cover"
-          />
-          <a
-            href="{{ about_video_obj.link }}"
-            class="open-popup-link group relative isolate grid aspect-square w-20 place-items-center"
-          >
-            <div
-              class="absolute inset-0 -z-10 scale-0 rounded-full bg-neutral-900 transition-transform duration-500 group-hover:scale-100"
-            ></div>
-            <i
-              class="ti ti-player-play text-6xl text-white transition-transform duration-500 group-hover:scale-50"
-            ></i>
-          </a>
-        </div>
-      </section>
-      {% endif %}
-      <!-- about video end -->
+<!-- about video start -->
+{% if about_video_obj %}
+<section class="py-8 md:py-16">
+  <div class="wrapper relative isolate grid aspect-[2/1] place-items-center md:aspect-[3/1]">
+    <img src="{{ about_video_obj.thumbnail.url }}" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+    <a href="{{ about_video_obj.link }}"
+      class="open-popup-link group relative isolate grid aspect-square w-20 place-items-center">
+      <div
+        class="absolute inset-0 -z-10 scale-0 rounded-full bg-zinc-900 transition-transform duration-500 group-hover:scale-100">
+      </div>
+      <i class="ti ti-player-play text-6xl text-white transition-transform duration-500 group-hover:scale-50"></i>
+    </a>
+  </div>
+</section>
+{% endif %}
+<!-- about video end -->
 
-      <!-- terms & policy start -->
-      <section class="py-8 md:py-16">
-        <div class="wrapper container">
-          <div class="section-infos mb-6 text-center uppercase md:mb-12">
-            <p class="mb-1 text-sm font-medium text-neutral-700">
-              Our Policy
-            </p>
-            <h2
-              class="text-2xl font-bold leading-tight tracking-wider text-neutral-900 md:text-3xl xl:text-4xl"
-            >
-             Terms & Conditions
-            </h2>
-          </div>
+<!-- terms & policy start -->
+<section class="py-8 md:py-16">
+  <div class="wrapper container">
+    <div class="section-infos mb-6 text-center uppercase md:mb-12">
+      <p class="mb-1 text-sm font-medium text-zinc-700">
+        Our Policy
+      </p>
+      <h2 class="text-2xl font-bold leading-tight tracking-wider text-zinc-900 md:text-3xl xl:text-4xl">
+        Terms & Conditions
+      </h2>
+    </div>
 
-          <!-- terms 1 -->
-          <div class="flex flex-col items-start justify-center md:flex-row md:justify-center border-t-[0.5px] border-neutral-400">
-            <div class="w-full md:w-[40%] py-6">
-              <h2 class="text-3xl font-bold uppercase text-neutral-900">               
-                PURCHASES TERMS AND CONDITIONS
-              </h2>
-            </div>
-            <div class="w-full md:w-[60%] py-6">
-              <p class="mb-6 text-md text-neutral-900">
-                Nulla porta nulla nec orci vulputate, id rutrum sapien varius. Class aptent taciti sociosqu ad litora torquent stra, per inceptos himenaeos. Nulla facilisi. Integer vel felis cursus, varius arcu non. vamus piorttitor li ero id metus scele risque pellentesque sit amet in est. Mauris accsan porta ante, vel tincidunt quam aucto vitae. Saecenas suscipit risus neque, at dapibus dolor sollicitudin vitae.
-              </p>
+    <!-- terms 1 -->
+    <div
+      class="flex flex-col items-start justify-center md:flex-row md:justify-center border-t-[0.5px] border-zinc-400">
+      <div class="w-full md:w-[40%] py-6">
+        <h2 class="text-3xl font-bold uppercase text-zinc-900">
+          PURCHASES TERMS AND CONDITIONS
+        </h2>
+      </div>
+      <div class="w-full md:w-[60%] py-6">
+        <p class="mb-6 text-md text-zinc-900">
+          Nulla porta nulla nec orci vulputate, id rutrum sapien varius. Class aptent taciti sociosqu ad litora torquent
+          stra, per inceptos himenaeos. Nulla facilisi. Integer vel felis cursus, varius arcu non. vamus piorttitor li
+          ero id metus scele risque pellentesque sit amet in est. Mauris accsan porta ante, vel tincidunt quam aucto
+          vitae. Saecenas suscipit risus neque, at dapibus dolor sollicitudin vitae.
+        </p>
 
-              <p class="text-md text-neutral-900">
-                Suspendisse sodales magna ut gravida feugiat. Aenean gravida pellentesque lacinia. Suspendisse ullamc ulis pharet ra, lacus sem gravida urna, eu pharetra enim felis condimtum enim. Cras eget quam mollis, cidunt, finibus mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus metus ex, quis pretium neque tincidunt ut. Donec vestilum congue sapien eu lacinia. Fusce vitae ultricies eros. Morbi quis varius nibh, nec semper nibh.
-              </p>
-            </div>
-          </div>
+        <p class="text-md text-zinc-900">
+          Suspendisse sodales magna ut gravida feugiat. Aenean gravida pellentesque lacinia. Suspendisse ullamc ulis
+          pharet ra, lacus sem gravida urna, eu pharetra enim felis condimtum enim. Cras eget quam mollis, cidunt,
+          finibus mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus metus ex,
+          quis pretium neque tincidunt ut. Donec vestilum congue sapien eu lacinia. Fusce vitae ultricies eros. Morbi
+          quis varius nibh, nec semper nibh.
+        </p>
+      </div>
+    </div>
 
-          <!-- terms 2 -->
-          <div class="flex flex-col items-start justify-center md:flex-row md:justify-center border-t-[0.5px] border-neutral-400">
-            <div class="w-full md:w-[40%] py-6">
-              <h2 class="text-3xl font-bold uppercase text-neutral-900">               
-                INTELECTUAL PROPERTY
-              </h2>
-            </div>
-            <div class="w-full md:w-[60%] py-6">
-              <ul class="text-md text-neutral-900 list-disc ml-6 leading-6">
-                <li>Fusce lacinia augue vitae nibh gravida rhoncus.</li>
-                <li>Sed eget varius neque. Vivamus id varius dui. Etiam  ibus ligula sit amet ex maleonec eu ibend.</li>
-              </ul>
-            </div>
-          </div>
+    <!-- terms 2 -->
+    <div
+      class="flex flex-col items-start justify-center md:flex-row md:justify-center border-t-[0.5px] border-zinc-400">
+      <div class="w-full md:w-[40%] py-6">
+        <h2 class="text-3xl font-bold uppercase text-zinc-900">
+          INTELECTUAL PROPERTY
+        </h2>
+      </div>
+      <div class="w-full md:w-[60%] py-6">
+        <ul class="text-md text-zinc-900 list-disc ml-6 leading-6">
+          <li>Fusce lacinia augue vitae nibh gravida rhoncus.</li>
+          <li>Sed eget varius neque. Vivamus id varius dui. Etiam ibus ligula sit amet ex maleonec eu ibend.</li>
+        </ul>
+      </div>
+    </div>
 
-          <!-- terms 3 -->
-          <div class="flex flex-col items-start justify-center md:flex-row md:justify-center border-t-[0.5px] border-b-[0.5px] border-neutral-400">
-            <div class="w-full md:w-[40%] py-6">
-              <h2 class="text-3xl font-bold uppercase text-neutral-900">               
-                TERMINATION
-              </h2>
-            </div>
-            <div class="w-full md:w-[60%] py-6">
-              <p class="mb-6 text-md text-neutral-900">
-                Nulla porta nulla nec orci vulputate, id rutrum sapien varius. Class aptent taciti sociosqu ad litora torquent stra, per inceptos himenaeos. Nulla facilisi. Integer vel felis cursus, varius arcu non. vamus piorttitor li ero id metus scele risque pellentesque sit amet in est. Mauris accsan porta ante, vel tincidunt quam aucto vitae. Saecenas suscipit risus neque, at dapibus dolor sollicitudin vitae.
-              </p>
+    <!-- terms 3 -->
+    <div
+      class="flex flex-col items-start justify-center md:flex-row md:justify-center border-t-[0.5px] border-b-[0.5px] border-zinc-400">
+      <div class="w-full md:w-[40%] py-6">
+        <h2 class="text-3xl font-bold uppercase text-zinc-900">
+          TERMINATION
+        </h2>
+      </div>
+      <div class="w-full md:w-[60%] py-6">
+        <p class="mb-6 text-md text-zinc-900">
+          Nulla porta nulla nec orci vulputate, id rutrum sapien varius. Class aptent taciti sociosqu ad litora torquent
+          stra, per inceptos himenaeos. Nulla facilisi. Integer vel felis cursus, varius arcu non. vamus piorttitor li
+          ero id metus scele risque pellentesque sit amet in est. Mauris accsan porta ante, vel tincidunt quam aucto
+          vitae. Saecenas suscipit risus neque, at dapibus dolor sollicitudin vitae.
+        </p>
 
-              <p class="text-md text-neutral-900">
-                Donec leo ligula, pulvinar id lectus ut, fringilla laoreet felis. Donec ut nulla pulvinar,   obortis   purus eu, queue ipsum efficitu Fusce lacinia augue vitae nibh gravida rhoncus. Donec ut nulla pulvinar, lobortis.  Donec dapibus ne queue ipsum efficitu uspensse  porta ligula id aliquam elerisque.               </p>
-            </div>
-          </div>
+        <p class="text-md text-zinc-900">
+          Donec leo ligula, pulvinar id lectus ut, fringilla laoreet felis. Donec ut nulla pulvinar, obortis purus eu,
+          queue ipsum efficitu Fusce lacinia augue vitae nibh gravida rhoncus. Donec ut nulla pulvinar, lobortis. Donec
+          dapibus ne queue ipsum efficitu uspensse porta ligula id aliquam elerisque. </p>
+      </div>
+    </div>
 
-        </div>
-      </section>
-      <!-- terms & policy end -->
+  </div>
+</section>
+<!-- terms & policy end -->
 
 {% endblock main_content %}

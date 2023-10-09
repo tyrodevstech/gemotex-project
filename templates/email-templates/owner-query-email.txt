@@ -1,0 +1,18 @@
+{% autoescape off %}
+Dear Gemotex Team,
+
+We wish to inform you that a product query has been submitted as follows:
+
+Inquirer's Information:
+- Name: {{client_name}}
+- Email: {{client_email}}
+
+Product Details:
+- Product ID: {{product_id}}
+- Product Name: {{product_title}}
+
+For any further information or assistance, we kindly request that you reach out to the client directly via email.
+
+Sincerely,
+Owner, Gemotex
+{% endautoescape %}
