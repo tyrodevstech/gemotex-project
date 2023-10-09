@@ -16,6 +16,7 @@ from .models import (
     IntroVideoModel,
     AboutCardModel,
     AboutVideoModel,
+    FeaturedProductModel,
 )
 
 
@@ -23,6 +24,7 @@ from .models import (
 class ProductImagesAdmin(admin.TabularInline):
     model = ProductImagesModel
     extra = 1
+    max_num = 4
 
 
 # Create an admin class for ProductModel
@@ -33,6 +35,13 @@ class ProductModelAdmin(admin.ModelAdmin):
 
     # Add the inline for ProductImagesModel
     inlines = [ProductImagesAdmin]
+
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "category":
+            kwargs["queryset"] = ProductCategoryModel.objects.all()  # Replace YourAuthorModel with your actual Author model
+            kwargs["empty_label"] = "Select a category"  # Customize the empty label
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def get_urls(self):
         urls = super().get_urls()
@@ -184,3 +193,20 @@ class AboutVideoAdmin(admin.ModelAdmin):
             return True
 
 admin.site.register(AboutVideoModel, AboutVideoAdmin)
+
+
+class FeaturedProductAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        num_objects = self.model.objects.count()
+        if num_objects >= 4:
+            return False
+        else:
+            return True
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "product":
+            kwargs["queryset"] = ProductModel.objects.all()  # Replace YourAuthorModel with your actual Author model
+            kwargs["empty_label"] = "Select a featured product"  # Customize the empty label
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+admin.site.register(FeaturedProductModel, FeaturedProductAdmin)

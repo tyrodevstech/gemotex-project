@@ -67,7 +67,7 @@ class ProductModel(models.Model):
     info = models.TextField(
         null=True, blank=True, max_length=325, verbose_name="Additional Information"
     )
-    tag = models.CharField(max_length=6, null=True, default="NEW")
+    tag = models.CharField(max_length=12, null=True, default="NEW")
 
     cover_image = models.ImageField(
         upload_to="product-cover-image/%Y/%d/%b",
@@ -83,6 +83,19 @@ class ProductModel(models.Model):
         verbose_name = "Product"
         verbose_name_plural = "Products"
         ordering = ["-id"]
+
+
+class FeaturedProductModel(models.Model):
+    product = models.ForeignKey(
+        ProductModel, on_delete=models.CASCADE, null=True, related_name="featured"
+    )
+
+    def __str__(self):
+        return f"{self.id} - {self.product.title}"
+
+    class Meta:
+        verbose_name = "Featured Product"
+        verbose_name_plural = "Featured Products"
 
 
 # Define Product Images Model
@@ -170,8 +183,8 @@ class PartnerCompanyModel(models.Model):
         return f"{self.partner_name} | N.B: you can add only 6 objects in this table."
 
     class Meta:
-        verbose_name = "Partner Company Logo"
-        verbose_name_plural = "Partner Company Logos"
+        verbose_name = "Buyers Company Logo"
+        verbose_name_plural = "Buyers Company Logos"
         
 
 
@@ -208,8 +221,8 @@ class IntroVideoModel(models.Model):
 class AboutCardModel(models.Model):
     title = models.CharField(null=True, max_length=150)
     sub_title = models.CharField(null=True, max_length=50)
-    btn_text = models.CharField(null=True, max_length=100)
-    btn_link = models.URLField(null=True, verbose_name="video link")
+    btn_text = models.CharField(null=True, max_length=100, verbose_name="button text")
+    btn_link = models.URLField(null=True, verbose_name="button link")
     details = models.TextField(null=True, max_length=525, verbose_name="card details")
     card_img = models.ImageField(
         upload_to="about-card-images",

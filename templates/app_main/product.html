@@ -38,21 +38,10 @@
           {{product.details}}
         </p>
         <div class="mt-4 flex flex-wrap gap-5 md:mt-8">
-          <div class="relative flex w-32 flex-row rounded border border-zinc-300 bg-transparent px-4">
-            <button data-action="decrement"
-              class="h-full w-20 cursor-pointer rounded-l text-zinc-600 outline-none hover:text-black">
-              <span class="m-auto text-2xl font-thin">−</span>
-            </button>
-            <input type="number"
-              class="text-md md:text-basecursor-default flex w-full items-center bg-transparent text-center font-semibold text-zinc-700 outline-none hover:text-black focus:text-black focus:outline-none"
-              name="custom-input-number" value="0" />
-            <button data-action="increment" class="rounded- h-full w-20 cursor-pointer text-zinc-600 hover:text-black">
-              <span class="m-auto text-2xl font-thin">+</span>
-            </button>
-          </div>
+          
           <button id="openModal"
             class="flex items-center justify-center gap-3 rounded border border-zinc-300 bg-zinc-200 px-5 py-2 transition-colors hover:bg-zinc-950 hover:text-white">
-            Add to cart
+            Request Product Query
             <i class="ti ti-shopping-bag"></i>
           </button>
         </div>
@@ -67,7 +56,7 @@
           </span>
           <span class="inline-block text-sm uppercase">
             <span class="mr-3 inline-block font-semibold">Tag:</span>
-            New
+            {{product.tag}}
           </span>
         </div>
         <div class="extra-images grid grid-cols-4 mt-6 md:mt-8 gap-2">

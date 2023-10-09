@@ -1,5 +1,5 @@
 {% autoescape off %}
-Hello,
+Hello, Admin
 
 We have received a new contact form submission through our website. Here are the details:
 

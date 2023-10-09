@@ -27,11 +27,13 @@
       <h2 class="mb-6 text-4xl lg:text-6xl font-bold uppercase text-zinc-900">
         {{ card.title }}
       </h2>
-      <p class="text-sm text-zinc-900">{{ card.details }}</p>
-      <button type="text"
-        class="mt-12 border-[1.5px] border-zinc-900 px-8 py-4 font-sans text-xs font-bold uppercase hover:bg-zinc-900 hover:text-white hover:duration-1000">
-        Order Now
-      </button>
+      <p class="text-sm text-zinc-900">
+        {{ card.details }}
+      </p>
+      <a href="{{ card.btn_link }}"
+        class="mt-8 inline-block border-[1.5px] border-zinc-900 px-8 py-4 text-xs font-bold uppercase hover:bg-zinc-900 hover:text-white hover:duration-1000">
+        {{ card.btn_text }}
+      </a>
     </div>
     <div class="w-full md:w-1/2">
       <div class="relative h-[44rem] w-full">
@@ -53,14 +55,13 @@
       <h2 class="mb-6 text-4xl lg:text-6xl font-bold uppercase text-zinc-900">
         {{ card.title }}
       </h2>
-      <p class="mb-6 text-sm text-zinc-900">
+      <p class="text-sm text-zinc-900">
         {{ card.details }}
       </p>
-
-      <!-- <ul class="text-sm text-zinc-900 list-disc ml-6 leading-6">
-                <li>Fusce lacinia augue vitae nibh gravida rhoncus.</li>
-                <li>Sed eget varius neque. Vivamus id varius dui. Etiam  ibus ligula sit amet ex maleonec eu ibend.</li>
-              </ul> -->
+      <a href="{{ card.btn_link }}"
+        class="mt-8 inline-block border-[1.5px] border-zinc-900 px-8 py-4 text-xs font-bold uppercase hover:bg-zinc-900 hover:text-white hover:duration-1000">
+        {{ card.btn_text }}
+      </a>
     </div>
   </div>
   {% endif %}

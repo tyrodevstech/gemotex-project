@@ -152,7 +152,7 @@ ADMIN_REORDER = (
     {'app': 'app_main', 'label': 'Home', 'models': (
         {'model': 'app_main.HeaderSliderModel', 'label': 'Header Sliders'},
         {'model': 'app_main.BrandGalleryModel', 'label': 'Brand Gallery'},
-        {'model': 'app_main.PartnerCompanyModel', 'label': 'Partner Company'},
+        {'model': 'app_main.PartnerCompanyModel', 'label': 'Buyer Logos'},
         {'model': 'app_main.ShortAboutInfoModel', 'label': 'Short About'},
         {'model': 'app_main.IntroVideoModel', 'label': 'Intro Video'},
         {'model': 'app_main.ReviewModel', 'label': 'Reviews'},
@@ -166,14 +166,15 @@ ADMIN_REORDER = (
     {'app': 'app_main', 'label': 'Contact', 'models': (
         {'model': 'app_main.ContactInformationModel', 'label': 'Contact Infos'},
     )},
-    {'app': 'app_main', 'label': 'Extra', 'models': (
-        {'model': 'app_main.FooterInformationModel', 'label': 'Admission'},
+    {'app': 'app_main', 'label': 'Footer', 'models': (
+        {'model': 'app_main.FooterInformationModel', 'label': 'Footer Informations'},
     )},
     {'app': 'app_main', 'label': 'Product', 'models': (
         {'model': 'app_main.ProductCategoryModel', 'label': 'Category'},
         {'model': 'app_main.ProductSubcategoryModel', 'label': 'Subcategory'},
         {'model': 'app_main.ProductModel', 'label': 'Products'},
         {'model': 'app_main.ProductImagesModel', 'label': 'Products  Images'},
+        {'model': 'app_main.FeaturedProductModel', 'label': 'Featured Products'},
     )},
     # Reorder app models
     {'app': 'auth', 'label':'Users and Groups', 'models': ('auth.User', 'auth.Group')},

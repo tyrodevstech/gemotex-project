@@ -42,6 +42,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
     integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- toast css cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+  integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- Additional CSS and JavaScript -->
   {% block head_css %}{% endblock head_css %}
   {% block head_js %}{% endblock head_js %}
@@ -87,6 +93,17 @@
 
   {% include 'components/footer.html' %}
 
+  <!-- tost message area -->
+  {% if messages %}
+  {% for message in messages %}
+  {% if message.tags == 'success' %}
+  <div id="msg_text_success" class="hidden ">{{ message }}</div>
+  {% elif message.tags == 'error' %}
+  <div id="msg_text_error" class="hidden ">{{ message }}</div>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -95,7 +112,41 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
     integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  <!-- toast js cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
+  integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
   <script src="{% static 'js/main.js' %}"></script>
+
+  <script>
+    if ($('#msg_text_success').text() != '') {
+            $.toast({
+                heading: 'Message',
+                text: `${$('#msg_text_success').text()}`,
+                icon: 'success',
+                loader: true,
+                loaderBg: '#9EC600',
+                position: 'top-right',
+                stack: false,
+                hideAfter: 10000 ,
+            })
+    } else if ($('#msg_text_error').text() != '') {
+        $.toast({
+            heading: 'Message',
+            text: `${$('#msg_text_error').text()}`,
+            icon: 'error',
+            loader: true,
+            loaderBg: '#9EC600',
+            position: 'top-right',
+            stack: false,
+            hideAfter: 10000 ,
+        })
+    }
+  </script>
 
   {% block script %} {% endblock script %}
 </body>

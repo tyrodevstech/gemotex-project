@@ -1,5 +1,6 @@
 from typing import Any
 from django.shortcuts import render
+from django.contrib import messages
 from django.views.generic import TemplateView, ListView, DetailView
 
 from app_main.models import (
@@ -15,6 +16,7 @@ from app_main.models import (
     IntroVideoModel,
     AboutCardModel,
     AboutVideoModel,
+    FeaturedProductModel,
 )
 
 from app_main.utils import send_owner_query_mail, send_client_query_mail, send_owner_contact_mail, send_client_contact_mail
@@ -26,7 +28,7 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
-        context["products"] = ProductModel.objects.all()[:4]
+        context["featured_products"] = FeaturedProductModel.objects.all()
         context["slider_qs"] = HeaderSliderModel.objects.filter(active=True)
         context["review_qs"] = ReviewModel.objects.all()
         context["brand_gallery_obj"] = BrandGalleryModel.objects.all().first()
@@ -60,6 +62,7 @@ class ContactView(TemplateView):
         client_message = request.POST.get('client_message')
         send_owner_contact_mail(client_name,client_email,client_message)
         send_client_contact_mail(context['contact'],client_name,client_email,client_message)
+        messages.success(request, 'Successfully sent! You can expect to receive an email from the Gemotex team shortly.')
         return self.render_to_response(context)
 
 
@@ -107,6 +110,9 @@ class ProductView(DetailView):
         client_email = request.POST.get('client_email')
         send_owner_query_mail(self.object,client_name,client_email)
         send_client_query_mail(self.object,client_name,client_email)
+
+        messages.success(request, 'Successfully received email!')
+        
         return self.render_to_response(context)
 
 

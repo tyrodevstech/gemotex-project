@@ -86,8 +86,8 @@
     </div>
 
     <div class="product-cards grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      {% for product in products %}
-      {% include 'components/product-card.html' %}
+      {% for featured_product in featured_products %}
+      {% include 'components/product-card.html' with product=featured_product.product %}
       {% endfor %}
     </div>
 
