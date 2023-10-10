@@ -160,7 +160,7 @@ ADMIN_REORDER = (
     {'app': 'app_main', 'label': 'About', 'models': (
         {'model': 'app_main.AboutCardModel', 'label': 'Sections'},
         {'model': 'app_main.AboutVideoModel', 'label': 'Video'},
-        {'model': 'app_main.ImportantDateModel', 'label': 'Important Dates'},
+        {'model': 'app_main.TermsAndConditionsModel', 'label': 'Terms & Conditions'},
     )},
 
     {'app': 'app_main', 'label': 'Contact', 'models': (

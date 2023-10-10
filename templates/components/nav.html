@@ -3,7 +3,7 @@
     <div class="flex w-full items-center justify-between md:w-auto">
       <a class="brand-link" href="{% url 'app_main:home' %}">Gemotex</a>
       <div class="nav-icons flex items-center gap-4 md:hidden">
-        <a href="admin/" class="grid place-items-center">
+        <a href="{% url 'admin:index' %}" class="grid place-items-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24"
             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
             stroke-linejoin="round">
@@ -62,7 +62,7 @@
           <a class="nav-link" href="{% url 'app_main:about' %}">About</a>
         </li>
         <li class="hidden md:inline-block">
-          <a href="admin/" class="grid place-items-center">
+          <a href="{% url 'admin:index' %}" class="grid place-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24"
               viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
               stroke-linejoin="round">
@@ -74,7 +74,7 @@
         </li>
 
         <li class="mt-4 inline-block md:mt-0">
-          <a href="admin/" class="rounded-sm bg-zinc-800 px-3 py-1.5 text-sm text-white">
+          <a href="{% url 'admin:index' %}" class="rounded-sm bg-zinc-800 px-3 py-1.5 text-sm text-white">
             Admin
           </a>
         </li>

@@ -17,6 +17,7 @@ from .models import (
     AboutCardModel,
     AboutVideoModel,
     FeaturedProductModel,
+    TermsAndConditionsModel,
 )
 
 
@@ -210,3 +211,10 @@ class FeaturedProductAdmin(admin.ModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 admin.site.register(FeaturedProductModel, FeaturedProductAdmin)
+
+
+
+class TermsAndConditionsAdmin(admin.ModelAdmin):
+    list_display = ("id", "title",)
+
+admin.site.register(TermsAndConditionsModel, TermsAndConditionsAdmin)

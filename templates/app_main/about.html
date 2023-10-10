@@ -88,6 +88,7 @@
 <!-- about video end -->
 
 <!-- terms & policy start -->
+{% if terms_qs %}
 <section class="py-8 md:py-16">
   <div class="wrapper container">
     <div class="section-infos mb-6 text-center uppercase md:mb-12">
@@ -99,73 +100,30 @@
       </h2>
     </div>
 
-    <!-- terms 1 -->
+    <!-- terms items start -->
+    {% for term in terms_qs %}
     <div
       class="flex flex-col items-start justify-center md:flex-row md:justify-center border-t-[0.5px] border-zinc-400">
+      
       <div class="w-full md:w-[40%] py-6">
         <h2 class="text-3xl font-bold uppercase text-zinc-900">
-          PURCHASES TERMS AND CONDITIONS
+          {{ term.title }}
         </h2>
       </div>
       <div class="w-full md:w-[60%] py-6">
         <p class="mb-6 text-md text-zinc-900">
-          Nulla porta nulla nec orci vulputate, id rutrum sapien varius. Class aptent taciti sociosqu ad litora torquent
-          stra, per inceptos himenaeos. Nulla facilisi. Integer vel felis cursus, varius arcu non. vamus piorttitor li
-          ero id metus scele risque pellentesque sit amet in est. Mauris accsan porta ante, vel tincidunt quam aucto
-          vitae. Saecenas suscipit risus neque, at dapibus dolor sollicitudin vitae.
-        </p>
-
-        <p class="text-md text-zinc-900">
-          Suspendisse sodales magna ut gravida feugiat. Aenean gravida pellentesque lacinia. Suspendisse ullamc ulis
-          pharet ra, lacus sem gravida urna, eu pharetra enim felis condimtum enim. Cras eget quam mollis, cidunt,
-          finibus mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus metus ex,
-          quis pretium neque tincidunt ut. Donec vestilum congue sapien eu lacinia. Fusce vitae ultricies eros. Morbi
-          quis varius nibh, nec semper nibh.
+          {{ term.dsc }}
         </p>
       </div>
     </div>
+    {% endfor %}
+    <!-- terms items end -->
 
-    <!-- terms 2 -->
-    <div
-      class="flex flex-col items-start justify-center md:flex-row md:justify-center border-t-[0.5px] border-zinc-400">
-      <div class="w-full md:w-[40%] py-6">
-        <h2 class="text-3xl font-bold uppercase text-zinc-900">
-          INTELECTUAL PROPERTY
-        </h2>
-      </div>
-      <div class="w-full md:w-[60%] py-6">
-        <ul class="text-md text-zinc-900 list-disc ml-6 leading-6">
-          <li>Fusce lacinia augue vitae nibh gravida rhoncus.</li>
-          <li>Sed eget varius neque. Vivamus id varius dui. Etiam ibus ligula sit amet ex maleonec eu ibend.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- terms 3 -->
-    <div
-      class="flex flex-col items-start justify-center md:flex-row md:justify-center border-t-[0.5px] border-b-[0.5px] border-zinc-400">
-      <div class="w-full md:w-[40%] py-6">
-        <h2 class="text-3xl font-bold uppercase text-zinc-900">
-          TERMINATION
-        </h2>
-      </div>
-      <div class="w-full md:w-[60%] py-6">
-        <p class="mb-6 text-md text-zinc-900">
-          Nulla porta nulla nec orci vulputate, id rutrum sapien varius. Class aptent taciti sociosqu ad litora torquent
-          stra, per inceptos himenaeos. Nulla facilisi. Integer vel felis cursus, varius arcu non. vamus piorttitor li
-          ero id metus scele risque pellentesque sit amet in est. Mauris accsan porta ante, vel tincidunt quam aucto
-          vitae. Saecenas suscipit risus neque, at dapibus dolor sollicitudin vitae.
-        </p>
-
-        <p class="text-md text-zinc-900">
-          Donec leo ligula, pulvinar id lectus ut, fringilla laoreet felis. Donec ut nulla pulvinar, obortis purus eu,
-          queue ipsum efficitu Fusce lacinia augue vitae nibh gravida rhoncus. Donec ut nulla pulvinar, lobortis. Donec
-          dapibus ne queue ipsum efficitu uspensse porta ligula id aliquam elerisque. </p>
-      </div>
-    </div>
+    <div class="border-t-[0.5px] border-zinc-400"></div>
 
   </div>
 </section>
+{% endif %}
 <!-- terms & policy end -->
 
 {% endblock main_content %}

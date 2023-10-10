@@ -17,6 +17,7 @@ from app_main.models import (
     AboutCardModel,
     AboutVideoModel,
     FeaturedProductModel,
+    TermsAndConditionsModel,
 )
 
 from app_main.utils import send_owner_query_mail, send_client_query_mail, send_owner_contact_mail, send_client_contact_mail
@@ -44,6 +45,7 @@ class AboutView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["cards_qs"] = AboutCardModel.objects.all()
         context["about_video_obj"] = AboutVideoModel.objects.first()
+        context["terms_qs"] = TermsAndConditionsModel.objects.all()
         return context
 
 

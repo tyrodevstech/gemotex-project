@@ -200,6 +200,18 @@ class ShortAboutInfoModel(models.Model):
         verbose_name_plural = "Short About Informations"
 
 
+class TermsAndConditionsModel(models.Model):
+    title = models.CharField(null=True, max_length=200, verbose_name="term & condition title")
+    dsc = models.TextField(null=True, max_length=999, verbose_name="description")
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = "Terms & Conditions"
+        verbose_name_plural = "Terms & Conditions"
+
+
 class IntroVideoModel(models.Model):
     title = models.CharField(null=True, max_length=200, default="Gemotex Intro Video")
     link = models.URLField(null=True, verbose_name="video link")
