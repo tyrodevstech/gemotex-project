@@ -21,22 +21,25 @@
     href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&family=Permanent+Marker&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap"
     rel="stylesheet" />
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Your website description goes here." />
-  <meta name="keywords" content="keyword1, keyword2, keyword3" />
-  <meta name="author" content="Your Name" />
+  <meta
+  name="description"
+  content="{% block description %}Gemotex is a globally recognized leader in garments procurement, renowned for delivering efficient, quality-driven solutions to businesses within the fashion industry.{% endblock description %}"
+/>
+  <meta name="keywords" content="fashion, buying, garments" />
+  <meta name="author" content="tyrodevs" />
   <meta name="robots" content="index, follow" />
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="GemoTex" />
-  <meta property="og:description" content="Your website description goes here." />
-  <meta property="og:image" content="https://example.com/og-image.jpg" />
-  <meta property="og:url" content="https://example.com" />
+  <meta property="og:title" content="{% block ogtitle %}{% endblock ogtitle %}GemoTex" />
+  <meta property="og:description" content="{% block ogdescription %}Gemotex is a globally recognized leader in garments procurement, renowned for delivering efficient, quality-driven solutions to businesses within the fashion industry.{% endblock ogdescription %}" />
+  <meta property="og:image" content="{{request.scheme}}://{{request.META.HTTP_HOST}}{% block ogimage %}{% static 'images/gemotex.png' %}{% endblock ogimage %}" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="GemoTex" />
-  <meta name="twitter:description" content="Your website description goes here." />
-  <meta name="twitter:image" content="https://example.com/twitter-image.jpg" />
+  <meta name="twitter:title" content="{% block twittertitle %}{% endblock twittertitle %}GemoTex" />
+  <meta name="twitter:description" content="{% block twitterdescription %}Gemotex is a globally recognized leader in garments procurement, renowned for delivering efficient, quality-driven solutions to businesses within the fashion industry.{% endblock twitterdescription %}" />
+  <meta name="twitter:image" content="{{request.scheme}}://{{request.META.HTTP_HOST}}{% block twitterimage %}{% static 'images/gemotex.png' %}{% endblock twitterimage %}" />
   <!-- Canonical Link -->
-  <link rel="canonical" href="https://example.com" />
+  <link rel="canonical" href="{{ request.build_absolute_uri }}" />
 
   <!-- Magnific Popup core CSS file -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
@@ -45,8 +48,8 @@
 
   <!-- toast css cdn -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
-  integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
+    integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Additional CSS and JavaScript -->
   {% block head_css %}{% endblock head_css %}
@@ -55,32 +58,7 @@
 
 <body class="overflow-y-hidden bg-zinc-100">
   <div class="preloader fixed inset-0 z-[100] flex flex-col items-center justify-center bg-zinc-700">
-    <!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL -->
-    <!-- Todo: add easing -->
-    <svg width="57" height="57" viewBox="0 0 57 57" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
-      <g fill="none" fill-rule="evenodd">
-        <g transform="translate(1 1)" stroke-width="2">
-          <circle cx="5" cy="50" r="5">
-            <animate attributeName="cy" begin="0s" dur="2.2s" values="50;5;50;50" calcMode="linear"
-              repeatCount="indefinite" />
-            <animate attributeName="cx" begin="0s" dur="2.2s" values="5;27;49;5" calcMode="linear"
-              repeatCount="indefinite" />
-          </circle>
-          <circle cx="27" cy="5" r="5">
-            <animate attributeName="cy" begin="0s" dur="2.2s" from="5" to="5" values="5;50;50;5" calcMode="linear"
-              repeatCount="indefinite" />
-            <animate attributeName="cx" begin="0s" dur="2.2s" from="27" to="27" values="27;49;5;27" calcMode="linear"
-              repeatCount="indefinite" />
-          </circle>
-          <circle cx="49" cy="50" r="5">
-            <animate attributeName="cy" begin="0s" dur="2.2s" values="50;50;5;50" calcMode="linear"
-              repeatCount="indefinite" />
-            <animate attributeName="cx" from="49" to="49" begin="0s" dur="2.2s" values="49;5;27;49" calcMode="linear"
-              repeatCount="indefinite" />
-          </circle>
-        </g>
-      </g>
-    </svg>
+    <div class="lds-dual-ring"></div>
     <span class="mt-5 inline-block font-perker text-lg uppercase text-white">
       gemotex
     </span>
@@ -93,16 +71,6 @@
 
   {% include 'components/footer.html' %}
 
-  <!-- tost message area -->
-  {% if messages %}
-  {% for message in messages %}
-  {% if message.tags == 'success' %}
-  <div id="msg_text_success" class="hidden ">{{ message }}</div>
-  {% elif message.tags == 'error' %}
-  <div id="msg_text_error" class="hidden ">{{ message }}</div>
-  {% endif %}
-  {% endfor %}
-  {% endif %}
 
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -116,36 +84,41 @@
 
   <!-- toast js cdn -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
-  integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
   <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/tyrotoast.js' %}"></script>
 
+  <!-- tost message area -->
   <script>
-    if ($('#msg_text_success').text() != '') {
-            $.toast({
-                heading: 'Message',
-                text: `${$('#msg_text_success').text()}`,
-                icon: 'success',
-                loader: true,
-                loaderBg: '#9EC600',
-                position: 'top-right',
-                stack: false,
-                hideAfter: 10000 ,
-            })
-    } else if ($('#msg_text_error').text() != '') {
-        $.toast({
-            heading: 'Message',
-            text: `${$('#msg_text_error').text()}`,
-            icon: 'error',
-            loader: true,
-            loaderBg: '#9EC600',
-            position: 'top-right',
-            stack: false,
-            hideAfter: 10000 ,
-        })
-    }
+    window.addEventListener("load", (event) => {
+
+      {% if messages %}
+      {% for message in messages %}
+      {% if message.tags == 'success' %}
+      new Toast({
+        title: "Success",
+        message: "{{message}}",
+        position: "top-right",
+        pauseOnHover: true,
+        pauseOnFocusLoss: true,
+        toastType: 'success'
+      });
+      {% elif message.tags == 'error' %}
+      new Toast({
+        title: "Error",
+        message: "{{message}}",
+        position: "top-right",
+        pauseOnHover: true,
+        pauseOnFocusLoss: true,
+        toastType: 'error'
+      });
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+    });
   </script>
 
   {% block script %} {% endblock script %}

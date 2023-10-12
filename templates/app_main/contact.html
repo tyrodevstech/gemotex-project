@@ -8,8 +8,8 @@
   <!-- cover image start -->
   <section id="contact-cover-image">
     <div class="relative isolate h-[32rem] w-full bg-black">
-      <img class="absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
-        src="{% static 'images/contact-cover.jpg' %}" alt="contact-cover" />
+      <img loading="lazy" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
+        src="{% static 'images/contact-static.png' %}" alt="contact-cover" />
       <div class="pt-[14rem] text-center font-sans text-white">
         <h2 class="text-4xl font-bold uppercase md:text-6xl">Contact US</h2>
       </div>
@@ -22,7 +22,7 @@
     <div class="container grid grid-cols-1 place-items-start gap-4 md:grid-cols-3">
       <!-- item-1 -->
       <div class="flex flex-col items-start justify-start">
-        <img src="{% static 'images/box-img.png' %}" width="62" height="62" alt="" />
+        <img loading="lazy" src="{% static 'images/box-img.png' %}" width="62" height="62" alt="" />
         <h3 class="mt-4 font-sans text-2xl font-bold uppercase tracking-tighter">
           Our Vision
         </h3>
@@ -35,7 +35,7 @@
 
       <!-- item-2 -->
       <div class="mt-4 flex flex-col items-start justify-start md:mt-0">
-        <img src="{% static 'images/headphone-img.png' %}" width="62" height="62" alt="" />
+        <img loading="lazy" src="{% static 'images/headphone-img.png' %}" width="62" height="62" alt="" />
         <h3 class="mt-4 font-sans text-2xl font-bold uppercase tracking-tighter">
           What We Do
         </h3>
@@ -48,7 +48,7 @@
 
       <!-- item-3 -->
       <div class="mt-4 flex flex-col items-start justify-start md:mt-0">
-        <img src="{% static 'images/history-img.png' %}" width="62" height="62" alt="" />
+        <img loading="lazy" src="{% static 'images/history-img.png' %}" width="62" height="62" alt="" />
         <h3 class="mt-4 font-sans text-2xl font-bold uppercase tracking-tighter">
           History
         </h3>

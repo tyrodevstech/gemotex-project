@@ -1,5 +1,8 @@
-{% extends 'base.html' %} {% load static %}
-{% block title %}Products | {% endblock title %} {% block main_content %}
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}Products | {% endblock title %} 
+
+{% block main_content %}
 <div class="breadcrumbs container pt-8">
   <div class="flex uppercase items-center gap-4 font-semibold overflow-x-auto whitespace-nowrap text-sm">
     <a href="/" class="flex items-center gap-2 text-zinc-500 hover:underline hover:text-zinc-950">
@@ -56,23 +59,14 @@
           {% endfor %}
         </ul>
       </div>
-
-
-
-
-
-
-
-
     </div>
+
     <div class="product-cards grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {% for product in products %}
       {% include 'components/product-card.html' %}
       {% endfor %}
     </div>
-
-
-
+    
     <div class="mt-10 flex justify-center gap-2 text-sm font-bold md:mt-14">
       {% if page_obj.has_previous %}
       <a href="?page={{ page_obj.previous_page_number }}"

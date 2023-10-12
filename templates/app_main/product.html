@@ -26,8 +26,8 @@
   <div class="wrapper container">
     <div class="mb-16 grid grid-cols-1 items-start gap-8 md:grid-cols-5 md:gap-12 lg:gap-16">
       <div class="relative w-full border-2 transition-all duration-300 hover:border-zinc-700 md:col-span-2">
-        <img id="main-image" src="{% if product.cover_image %}{{product.cover_image.url}}{% endif %}" alt=""
-          class="aspect-square h-auto w-full object-cover" />
+        <img loading="lazy" id="main-image" src="{% if product.cover_image %}{{product.cover_image.url}}{% endif %}"
+          alt="{{product.title}} image" class="aspect-square h-auto w-full object-cover" />
       </div>
       <div class="w-full md:col-span-3">
         <h2 class="text-3xl font-semibold capitalize md:text-4xl lg:text-5xl">
@@ -38,7 +38,7 @@
           {{product.details}}
         </p>
         <div class="mt-4 flex flex-wrap gap-5 md:mt-8">
-          
+
           <button id="openModal"
             class="flex items-center justify-center gap-3 rounded border border-zinc-300 bg-zinc-200 px-5 py-2 transition-colors hover:bg-zinc-950 hover:text-white">
             Request Product Query
@@ -62,7 +62,7 @@
         <div class="extra-images grid grid-cols-4 mt-6 md:mt-8 gap-2">
           {% for extra_img in product.images.all %}
           <div class="thumbnail w-full h-full border cursor-pointer">
-            <img src="{{extra_img.image.url }}" alt="" class="w-full h-full object-cover aspect-square">
+            <img loading="lazy" src="{{extra_img.image.url }}" alt="product extra image {{forloop.counter}}" class="w-full h-full object-cover aspect-square">
           </div>
           {% endfor %}
         </div>

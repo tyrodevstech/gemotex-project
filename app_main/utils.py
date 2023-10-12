@@ -16,7 +16,7 @@ def send_owner_query_mail(obj,client_name, client_email):
     text_message = render_to_string(text_version,c)
 
     try:
-        send_mail(subject, text_message, settings.DEFAULT_FROM_EMAIL,[client_email])
+        send_mail(subject, text_message, settings.DEFAULT_FROM_EMAIL,[settings.DEFAULT_OWNER_MAIL])
     except BadHeaderError:
         return HttpResponse('Invalid header found.')
     
@@ -49,7 +49,7 @@ def send_owner_contact_mail(client_name, client_email,client_message):
     text_message = render_to_string(text_version,c)
 
     try:
-        send_mail(subject, text_message, settings.DEFAULT_FROM_EMAIL,[client_email])
+        send_mail(subject, text_message, settings.DEFAULT_FROM_EMAIL,[settings.DEFAULT_OWNER_MAIL])
     except BadHeaderError:
         return HttpResponse('Invalid header found.')
     

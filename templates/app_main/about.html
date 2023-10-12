@@ -7,8 +7,8 @@
 <!-- cover image start -->
 <section id="about-cover-image">
   <div class="relative isolate h-[32rem] w-full bg-black">
-    <img class="absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
-      src="https://dunker.qodeinteractive.com/wp-content/uploads/2022/12/About-us-title-img.jpg" alt="contact-cover" />
+    <img loading="lazy" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
+      src="{% static 'images/about-static.png' %}" alt="contact-cover" />
     <div class="pt-[14rem] text-center font-sans text-white">
       <h2 class="text-4xl font-bold uppercase md:text-6xl">About US</h2>
     </div>
@@ -37,7 +37,7 @@
     </div>
     <div class="w-full md:w-1/2">
       <div class="relative h-[44rem] w-full">
-        <img class="absolute inset-0 -z-10 h-full w-full object-cover" src="{{card.card_img.url}}"
+        <img loading="lazy" class="absolute inset-0 -z-10 h-full w-full object-cover" src="{{card.card_img.url}}"
           alt="about-img-{{ forloop.counter }}" />
       </div>
     </div>
@@ -46,7 +46,7 @@
   <div class="container flex flex-col items-center justify-center md:flex-row md:justify-center">
     <div class="w-full md:w-1/2">
       <div class="relative h-[44rem] w-full">
-        <img class="absolute inset-0 -z-10 h-full w-full object-cover" src="{{card.card_img.url}}"
+        <img loading="lazy" class="absolute inset-0 -z-10 h-full w-full object-cover" src="{{card.card_img.url}}"
           alt="about-img-{{ forloop.counter }}" />
       </div>
     </div>
@@ -74,7 +74,8 @@
 {% if about_video_obj %}
 <section class="py-8 md:py-16">
   <div class="wrapper relative isolate grid aspect-[2/1] place-items-center md:aspect-[3/1]">
-    <img src="{{ about_video_obj.thumbnail.url }}" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+    <img loading="lazy" src="{{ about_video_obj.thumbnail.url }}" alt=""
+      class="absolute inset-0 -z-10 h-full w-full object-cover" />
     <a href="{{ about_video_obj.link }}"
       class="open-popup-link group relative isolate grid aspect-square w-20 place-items-center">
       <div
@@ -104,7 +105,7 @@
     {% for term in terms_qs %}
     <div
       class="flex flex-col items-start justify-center md:flex-row md:justify-center border-t-[0.5px] border-zinc-400">
-      
+
       <div class="w-full md:w-[40%] py-6">
         <h2 class="text-3xl font-bold uppercase text-zinc-900">
           {{ term.title }}
