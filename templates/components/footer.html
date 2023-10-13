@@ -70,16 +70,16 @@
           <h2 class="mb-3 text-sm font-bold md:text-base">Company</h2>
           <div class="grid w-max gap-3 text-[0.8rem] sm:grid-cols-2 md:gap-6 md:text-sm">
             <div class="flex flex-col gap-3">
-              <a href="#">About Us</a>
-              <a href="#">Contact Us</a>
-              <a href="#">Service Policy</a>
-              <a href="#">Privacy Policy</a>
+              <a href="{% url 'app_main:about' %}">About Us</a>
+              <a href="{% url 'app_main:contact' %}">Contact Us</a>
+              <a href="{% url 'app_main:about' %}">Service Policy</a>
+              <a href="{% url 'app_main:about' %}">Privacy Policy</a>
             </div>
             <div class="flex flex-col gap-3">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Support Policy</a>
-              <a href="#">News</a>
-              <a href="#">FAQ</a>
+              <a href="{% url 'app_main:about' %}">Support Policy</a>
+              <a href="{% url 'app_main:about' %}">Our Services</a>
+              <a href="{% url 'app_main:about' %}">Video content</a>
+              <a href="{% url 'app_main:product_list' %}">Products</a>
             </div>
           </div>
         </div>
@@ -107,7 +107,7 @@
     </div>
   </div>
   <div class="mt-4 w-full bg-zinc-800 p-4 text-center text-xs sm:text-sm">
-    <p class="text-white">Developed by <a class="text-blue-500 hover:underline" href="https://www.itsourcebd.com/"
-        target="_blank">ITSOURCE</a> | © 2020-2023 gemotex. All rights reserved.</p>
+    <p class="text-white">Developed by <a class="text-green-500 hover:underline" href="https://www.itsourcebd.com/"
+        target="_blank">ITSOURCE</a> | © <script>document.write(new Date().getFullYear());</script> gemotex. All rights reserved.</p>
   </div>
 </footer>
