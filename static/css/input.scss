@@ -91,11 +91,6 @@ body {
   }
 }
 
-.brand-link {
-  font-family: "Permanent Marker", cursive;
-  @apply flex-none text-3xl font-semibold;
-}
-
 .menu-link,
 .submenu-btn {
   @apply flex w-full gap-x-5 items-center rounded-md  px-3 py-1.5 text-sm text-zinc-800 hover:bg-zinc-100 focus:ring-2 focus:ring-blue-500;

@@ -1,12 +1,12 @@
 {% load static %}
 <footer class="footer-bg flex w-full flex-col items-center justify-center bg-zinc-900 text-white">
   <div class="container">
-    <div class="mt-8 grid grid-cols-1 items-center gap-8 md:mt-16 md:grid-cols-2 md:gap-4 lg:grid-cols-4">
-      <a class="font-perker text-5xl" href="#">Gemotex</a>
+    <div class="mt-8 grid grid-cols-1 items-center gap-8 md:mt-16 md:grid-cols-2 md:gap-4 xl:grid-cols-4">
+      <a class="font-perker text-3xl md:text-4xl" href="/">Gemotex</a>
 
       <!-- item-1 -->
       <div class="flex items-center gap-8">
-        <img loading="lazy" src="{% static 'images/box-white.png' %}" width="62" height="62" alt="" />
+        <img loading="lazy" src="{% static 'images/box-white.png' %}" class="w-10 md:w-14 aspect-square" alt="" />
         <h5 class="font-semibold uppercase">
           FREE SHIPPING & RETURN POLICY
         </h5>
@@ -14,13 +14,13 @@
 
       <!-- item-2 -->
       <div class="flex items-center gap-8">
-        <img loading="lazy" src="{% static 'images/headphone-white.png' %}" width="62" height="62" alt="" />
+        <img loading="lazy" src="{% static 'images/headphone-white.png' %}" alt="" class="w-10 md:w-14 aspect-square" />
         <h5 class="font-semibold uppercase">90-DAY WARRANTY</h5>
       </div>
 
       <!-- item-3 -->
       <div class="flex items-center gap-8">
-        <img loading="lazy" src="{% static 'images/history-white.png' %}" width="62" height="62" alt="" />
+        <img loading="lazy" src="{% static 'images/history-white.png' %}" class="w-10 md:w-14 aspect-square" alt="" />
         <h5 class="font-semibold uppercase">
           NEW PRODUCT OFFERINGS & DEALS
         </h5>
@@ -33,7 +33,7 @@
       {% if footer %}
       <div class="flex flex-col items-center md:items-start lg:col-span-4">
         <p
-          class="mb-7 max-w-md text-center text-sm leading-relaxed text-white md:max-w-none md:text-left lg:text-justify">
+          class="mb-5 max-w-md text-center text-sm leading-relaxed text-white md:max-w-none md:text-left lg:text-justify">
           {{ footer.details }}
         </p>
         <ul class="flex gap-5 text-xl">
@@ -65,26 +65,24 @@
       </div>
       {% endif %}
 
-      <div class="flex w-full flex-wrap justify-center gap-4 md:gap-10 lg:col-span-5 lg:pl-10 xl:pl-16">
-        <div class="flex-1">
-          <h2 class="mb-3 text-sm font-bold md:text-base">Company</h2>
-          <div class="grid w-max gap-3 text-[0.8rem] sm:grid-cols-2 md:gap-6 md:text-sm">
+      <div class="flex w-full flex-col md:flex-row justify-center gap-10 lg:col-span-5 lg:pl-10 xl:pl-16">
+        <div class="flex-1 w-full">
+          <h2 class="mb-3 text-sm font-bold md:text-base">Quick Links</h2>
+          <div class="flex text-[0.8rem] gap-6 md:text-sm">
             <div class="flex flex-col gap-3">
               <a href="{% url 'app_main:about' %}">About Us</a>
               <a href="{% url 'app_main:contact' %}">Contact Us</a>
-              <a href="{% url 'app_main:about' %}">Service Policy</a>
               <a href="{% url 'app_main:about' %}">Privacy Policy</a>
             </div>
             <div class="flex flex-col gap-3">
               <a href="{% url 'app_main:about' %}">Support Policy</a>
               <a href="{% url 'app_main:about' %}">Our Services</a>
-              <a href="{% url 'app_main:about' %}">Video content</a>
               <a href="{% url 'app_main:product_list' %}">Products</a>
             </div>
           </div>
         </div>
 
-        <div class="flex-1">
+        <div class="w-full md:flex-1">
           <h2 class="mb-3 text-sm font-bold md:text-base">Contact Us</h2>
           {% if contact %}
           <div class="flex flex-col gap-3 text-[0.8rem] md:text-sm">

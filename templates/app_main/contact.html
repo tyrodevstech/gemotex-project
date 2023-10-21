@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Contact | {% endblock title %}
+{% block description %}{{ contact.details }}{% endblock description %}
+
 
 {% block ogtitle %}Contact | {% endblock ogtitle %}
+{% block twitterdescription %}{{ contact.details }}{% endblock twitterdescription %}
+
 {% block twittertitle %}Contact | {% endblock twittertitle %}
+{% block ogdescription %}{{ contact.details }}{% endblock ogdescription %}
 
 
 {% block main_content %}

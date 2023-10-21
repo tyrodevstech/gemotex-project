@@ -1,7 +1,7 @@
 <nav class="w-full bg-white sticky top-0 z-50" aria-label="Global">
   <div class="nav-wrapper container flex h-16 items-center justify-between">
     <div class="flex w-full items-center justify-between md:w-auto">
-      <a class="brand-link" href="{% url 'app_main:home' %}">Gemotex</a>
+      <a class="flex-none text-3xl font-semibold font-perker" href="{% url 'app_main:home' %}">Gemotex</a>
       <div class="nav-icons flex items-center gap-4 md:hidden">
         <a href="{% url 'admin:index' %}" class="grid place-items-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24"
@@ -61,20 +61,16 @@
         <li class="">
           <a class="nav-link" href="{% url 'app_main:about' %}">About</a>
         </li>
-        <li class="hidden md:inline-block">
-          <a href="{% url 'admin:index' %}" class="grid place-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24"
+
+        <li class="mt-4 inline-block md:mt-0">
+          <a href="{% url 'admin:index' %}" class="rounded flex w-max items-center gap-2 uppercase bg-zinc-800 px-4 py-2 text-sm text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="16" height="16"
               viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
               stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
               <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
             </svg>
-          </a>
-        </li>
-
-        <li class="mt-4 inline-block md:mt-0">
-          <a href="{% url 'admin:index' %}" class="rounded-sm bg-zinc-800 px-3 py-1.5 text-sm text-white">
             Admin
           </a>
         </li>

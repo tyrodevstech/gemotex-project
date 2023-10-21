@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Product | {% endblock title %}
 
-{% block ogtitle %}Product | {% endblock ogtitle %}
-{% block twittertitle %}Product | {% endblock twittertitle %}
+{% block title %}{{ product.title }} | {% endblock title %}
+{% block description %}{{ product.details|striptags|safe|truncatechars_html:250 }}{% endblock description %}
+
+{% block twittertitle %}{{ product.title }} | {% endblock twittertitle %}
+{% block twitterimage %}{% if product.cover_image %}{{product.cover_image.url}}{% endif %}{% endblock twitterimage %}
+{% block twitterdescription %}{{ product.details|striptags|safe|truncatechars_html:250 }}{% endblock twitterdescription %}
+
+{% block ogtitle %}{{ product.title }} | {% endblock ogtitle %}
+{% block ogimage %}{% if product.cover_image %}{{product.cover_image.url}}{% endif %}{% endblock ogimage %}
+{% block ogdescription %}{{ product.details|striptags|safe|truncatechars_html:250 }}{% endblock ogdescription %}
 
 {% block main_content %}
 
 <div class="breadcrumbs container pt-8">
-  <div class="flex items-center uppercase font-semibold gap-4 overflow-x-auto whitespace-nowrap text-sm">
-    <a href="/" class="flex items-center gap-2 text-zinc-500 hover:text-zinc-950 hover:underline">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+  <div class="flex items-center uppercase font-semibold gap-2 overflow-x-auto whitespace-nowrap text-xs">
+    <a href="/" class="flex items-center gap-1 text-zinc-500 hover:text-zinc-950 hover:underline">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mb-0.5" viewBox="0 0 20 20" fill="currentColor">
         <path
           d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
       </svg>
@@ -38,15 +45,15 @@
           {{product.title}}
         </h2>
         <p
-          class="mt-5 line-clamp-4 text-sm leading-normal tracking-wider text-zinc-700 md:mt-8 md:text-base md:leading-relaxed">
+          class="mt-5 md:line-clamp-4 text-sm leading-normal tracking-wider text-zinc-700 md:mt-8 md:text-base md:leading-relaxed">
           {{product.details}}
         </p>
         <div class="mt-4 flex flex-wrap gap-5 md:mt-8">
 
           <button id="openModal"
-            class="flex items-center justify-center gap-3 rounded border border-zinc-300 bg-zinc-200 px-5 py-2 transition-colors hover:bg-zinc-950 hover:text-white">
-            Request Product Query
+            class="flex items-center uppercase text-sm md:text-base justify-center gap-3 rounded border border-zinc-300 bg-zinc-200 px-5 py-2 transition-colors hover:bg-zinc-950 hover:text-white">
             <i class="ti ti-shopping-bag"></i>
+            Request Product Query
           </button>
         </div>
         <div class="mt-6 flex flex-col gap-3 md:mt-8">
@@ -66,7 +73,8 @@
         <div class="extra-images grid grid-cols-4 mt-6 md:mt-8 gap-2">
           {% for extra_img in product.images.all %}
           <div class="thumbnail w-full h-full border cursor-pointer">
-            <img loading="lazy" src="{{extra_img.image.url }}" alt="product extra image {{forloop.counter}}" class="w-full h-full object-cover aspect-square">
+            <img loading="lazy" src="{{extra_img.image.url }}" alt="product extra image {{forloop.counter}}"
+              class="w-full h-full object-cover aspect-square">
           </div>
           {% endfor %}
         </div>
@@ -93,13 +101,12 @@
 <div id="modal" class="hidden fixed inset-0 z-10 overflow-y-auto grid place-items-center bg-zinc-700/50"
   aria-labelledby="modal-title" role="dialog" aria-modal="true">
   <div
-    class="relative flex flex-col overflow-hidden text-left transition-all bg-white rounded-lg shadow-xl sm:max-w-sm sm:w-full sm:p-6">
+    class="relative flex flex-col overflow-hidden text-left transition-all bg-white mx-4 rounded-lg shadow-xl sm:max-w-md sm:w-full p-6">
     <div>
       <h3 class="text-xl font-bold mb-2 text-zinc-800 capitalize flex items-center" id="modal-title"><i
           class="ti ti-info-hexagon mr-2"></i> Confirmation</h3>
       <p class="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
         Are you sure you want to deal with us with this following product?
-        <span class="font-semibold ml-2">(Product-ID : {{product.id}})</span>
       </p>
     </div>
     <form class="w-full mt-2" method="post">
@@ -115,7 +122,7 @@
       <input type="email" name="client_email" placeholder="email" required
         class="block w-full px-4 py-2 text-sm text-zinc-700 bg-white border border-zinc-200 rounded-md focus:border-zinc-400 focus:outline-none focus:ring focus:ring-zinc-300 focus:ring-opacity-40" />
 
-      <div class="sm:flex sm:items-center justify-between mt-4 gap-6 ">
+      <div class="flex sm:items-center justify-between mt-7 gap-6 ">
         <button id="closeModal"
           class="w-full px-4 py-2 text-sm font-medium tracking-wide text-zinc-700 capitalize transition-colors duration-300 border border-zinc-200 rounded-md hover:bg-zinc-100 focus:outline-none focus:ring focus:ring-zinc-300 focus:ring-opacity-40">
           Cancel

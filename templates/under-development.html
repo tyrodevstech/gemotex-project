@@ -1,0 +1,253 @@
+<div id="under-development-modal" class="modal-wrapper hidden fixed inset-0 w-full h-full bg-gray-950/60 z-50"
+    aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex h-full items-center justify-center p-6">
+        <div
+            class="modal-content relative inline-block p-5 overflow-hidden text-center bg-white rounded-lg shadow-xl sm:max-w-md sm:w-full sm:p-8">
+            <div class="flex items-center justify-center">
+                <div id="moad-title" class="text-xl sm:text-2xl font-bold text-gray-900 flex tracking-[0.2em]">
+                    <h1 id="one">W</h1>
+                        <h1 id="two">E</h1>
+                        <h1 id="three">L</h1>
+                        <h1 id="four">C</h1>
+                        <h1 id="five">O</h1>
+                        <h1 id="six">M</h1>
+                        <h1 id="seven">E</h1>
+                </div>
+            </div>
+
+            <div class="mt-4 modal-text">
+                <h2 class="sm:text-lg leading-6 text-gray-800 font-semibold uppercase" id="modal-sub-heading">
+                    We are under development</h2>
+                <p class="text-sm sm:text-base sm:leading-6 text-gray-600 capitalize mt-2" id="modal-para">
+                    We apologize for the inconvenience. We are under construction and will be back
+                    soon with exciting new features. Thank you for your patience. </p>
+            </div>
+
+            <div class="sm:flex sm:justify-end mt-6">
+                <button id="closeButton"
+                    class="w-full px-4 py-2 text-sm font-medium tracking-wide text-gray-50 uppercase transition-all duration-300 rounded-md sm:w-auto bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-800 focus:ring-opacity-40">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript code to show the modal after 3 seconds of page load
+    window.addEventListener("load", function () {
+        const uDmodal = document.querySelector('#under-development-modal');
+
+        // Show the modal after a 3-second delay
+        setTimeout(function () {
+            uDmodal.classList.remove('hidden');
+        }, 4000);
+
+        // Close the modal when the "Close" button is clicked
+        const closeButton = document.getElementById('closeButton');
+        closeButton.addEventListener('click', function () {
+            uDmodal.classList.add('hidden');
+        });
+    });
+</script>
+
+<style>
+    /* Keyframes Animation - animate-con */
+    @keyframes animate-con {
+        0% {
+            opacity: 0;
+        }
+
+        33.3% {
+            opacity: 0;
+        }
+    }
+
+    /* Keyframes Animation - animate-one */
+    @keyframes animate-one {
+        0% {
+            opacity: 0;
+            margin-right: 150px;
+            margin-bottom: 100px;
+        }
+
+        70% {
+            opacity: 0;
+        }
+
+        100% {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    /* Keyframes Animation - animate-two */
+    @keyframes animate-two {
+        0% {
+            opacity: 0;
+            margin-top: 105px;
+            margin-left: 10px;
+        }
+
+        70% {
+            opacity: 0;
+        }
+
+        100% {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    /* Keyframes Animation - animate-three */
+    @keyframes animate-three {
+        0% {
+            opacity: 0;
+            margin-bottom: 100px;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        70% {
+            opacity: 0;
+        }
+
+        100% {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    /* Keyframes Animation - animate-four */
+    @keyframes animate-four {
+        0% {
+            opacity: 0;
+            margin-top: 100px;
+            margin-left: 0;
+            margin-right: 150px;
+        }
+
+        70% {
+            opacity: 0;
+        }
+
+        100% {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    /* Keyframes Animation - animate-five */
+    @keyframes animate-five {
+        0% {
+            opacity: 0;
+            margin-bottom: 105px;
+        }
+
+        70% {
+            opacity: 0;
+        }
+
+        100% {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    /* Keyframes Animation - animate-six */
+    @keyframes animate-six {
+        0% {
+            opacity: 0;
+            margin-top: 105px;
+        }
+
+        70% {
+            opacity: 0;
+        }
+
+        100% {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    /* Keyframes Animation - animate-seven */
+    @keyframes animate-seven {
+        0% {
+            opacity: 0;
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        70% {
+            opacity: 0;
+        }
+
+        100% {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    /* Apply the animations to respective elements */
+    #modal-sub-heading, #modal-para, #one, #two, #three, #four, #five, #six, #seven {
+        animation-name: animate-con;
+        animation-duration: 3s;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-out;
+    }
+
+    #modal-para {
+        animation-duration: 3.5s;
+    }
+
+    #one {
+        animation-name: animate-one;
+        animation-duration: 1.25s;
+    }
+
+    #two {
+        animation-name: animate-two;
+        animation-duration: 1.25s;
+    }
+
+    #three {
+        animation-name: animate-three;
+        animation-duration: 1.25s;
+    }
+
+    #four {
+        animation-name: animate-four;
+        animation-duration: 1.25s;
+    }
+
+    #five {
+        animation-name: animate-five;
+        animation-duration: 1.25s;
+    }
+
+    #six {
+        animation-name: animate-six;
+        animation-duration: 1.25s;
+    }
+
+    #seven {
+        animation-name: animate-seven;
+        animation-duration: 1.25s;
+    }
+</style>

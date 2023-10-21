@@ -1,61 +1,98 @@
-{% extends 'base.html' %} 
-{% load static %}
-{% block title %}Products | {% endblock title %} 
-
-{% block ogtitle %}Products | {% endblock ogtitle %}
-{% block twittertitle %}Products | {% endblock twittertitle %}
-
-{% block main_content %}
+{% extends 'base.html' %} {% load static %} {% block title %}Products | {%
+endblock title %} {% block ogtitle %}Products | {% endblock ogtitle %} {% block
+twittertitle %}Products | {% endblock twittertitle %} {% block main_content %}
 <div class="breadcrumbs container pt-8">
-  <div class="flex uppercase items-center gap-4 font-semibold overflow-x-auto whitespace-nowrap text-sm">
-    <a href="/" class="flex items-center gap-2 text-zinc-500 hover:underline hover:text-zinc-950">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+  <div
+    class="flex items-center gap-2 overflow-x-auto whitespace-nowrap text-xs font-semibold uppercase"
+  >
+    <a
+      href="/"
+      class="flex items-center gap-1 text-gray-500 hover:text-gray-950 hover:underline"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="mb-0.5 h-3 w-3"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
         <path
-          d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+          d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+        />
       </svg>
       Home
     </a>
 
-    <span class="text-zinc-500">/</span>
+    <span class="text-gray-500">/</span>
 
-    <a href="{% url 'app_main:product_list' %}" class="text-zinc-950 hover:underline">Products</a>
+    <a
+      href="{% url 'app_main:product_list' %}"
+      class="text-gray-950 hover:underline"
+    >
+      Products
+    </a>
   </div>
 </div>
 
 <section class="my-8 py-4 md:my-16 md:py-8">
   <div class="section-wrapper container">
     <div class="section-infos mb-5 text-center uppercase md:mb-8">
-      <p class="mb-1 text-sm font-medium text-zinc-700">Explore Our World</p>
-      <h2 class="text-2xl font-bold leading-tight tracking-wider text-zinc-900 md:text-3xl xl:text-4xl">
+      <p class="mb-1 text-sm font-medium text-gray-700">Explore Our World</p>
+      <h2
+        class="text-2xl font-bold leading-tight tracking-wider text-gray-900 md:text-3xl xl:text-4xl"
+      >
         New and Featured Products
       </h2>
     </div>
-    <div class="filters mb-4 flex flex-wrap items-center justify-center text-sm uppercase md:justify-between">
-      <div class="categories flex flex-wrap gap-4 md:gap-6 font-semibold text-zinc-950">
-        <a href="{% url 'app_main:product_list' %}" class="py-1 {% if not request.GET.category %}border-b-2 border-b-zinc-950{% endif %}">All</a>
+    <div
+      class="filters mb-4 flex flex-wrap items-center justify-center text-sm uppercase md:justify-between"
+    >
+      <div
+        class="categories flex flex-wrap gap-4 font-semibold text-gray-950 md:gap-6"
+      >
+        <a
+          href="{% url 'app_main:product_list' %}"
+          class="{% if not request.GET.category %}border-b-2 border-b-gray-950{% endif %} py-1"
+        >
+          All
+        </a>
         {% for category in categories %}
-        <a href="{% url 'app_main:product_list' %}?category={{category.category_name}}" class="py-1 {% if request.GET.category == category.category_name %}border-b-2 border-b-zinc-950{% endif %}">{{category.category_name}}</a>
+        <a
+          href="{% url 'app_main:product_list' %}?category={{category.category_name}}"
+          class="{% if request.GET.category == category.category_name %}border-b-2 border-b-gray-950{% endif %} py-1"
+        >
+          {{category.category_name}}
+        </a>
         {% endfor %}
       </div>
       <div class="sub-categories relative">
-        <button type="button" id="subcategory-filter-button"
-          class="flex items-center select-none gap-x-5 py-1 font-semibold !uppercase text-zinc-600 hover:text-zinc-950">
+        <button
+          type="button"
+          id="subcategory-filter-button"
+          class="flex select-none items-center gap-x-5 py-1 font-semibold !uppercase text-gray-600 hover:text-gray-950"
+        >
           <span>All Subcategories</span>
           <i class="ti ti-chevron-down"></i>
         </button>
 
-        <ul id="subcategory-filter-panel"
-          class="absolute left-auto right-0 space-y-1 translate-y-3 top-full z-10 w-48 rounded-lg bg-white px-2 py-3 text-sm shadow-md outline outline-1 outline-zinc-200 before:absolute before:-top-5 before:left-0 before:h-5 before:w-full hidden">
+        <ul
+          id="subcategory-filter-panel"
+          class="absolute left-auto right-0 top-full z-10 hidden w-48 translate-y-3 space-y-1 rounded-lg bg-white px-2 py-3 text-sm shadow-md outline outline-1 outline-gray-200 before:absolute before:-top-5 before:left-0 before:h-5 before:w-full"
+        >
           <li>
-            <a class="cursor-pointer subcategory-option flex w-full items-center rounded-md px-3 py-1 text-xs hover:bg-zinc-700 hover:text-white text-zinc-800"
-              onclick="deleteUrlParameter('subcategory')">
+            <a
+              class="subcategory-option flex w-full cursor-pointer items-center rounded-md px-3 py-1 text-xs text-gray-800 hover:bg-gray-700 hover:text-white"
+              onclick="deleteUrlParameter('subcategory')"
+            >
               All Subcategories
             </a>
           </li>
           {% for subcategory in subcategories %}
           <li>
-            <a data-subcategory="{{subcategory.subcategory_name}}" class="cursor-pointer subcategory-option flex w-full items-center rounded-md px-3 py-1 text-xs text-zinc-800 hover:bg-zinc-700 hover:text-white"
-              onclick="setUrlParameter('subcategory','{{subcategory.subcategory_name}}')">
+            <a
+              data-subcategory="{{subcategory.subcategory_name}}"
+              class="subcategory-option flex w-full cursor-pointer items-center rounded-md px-3 py-1 text-xs text-gray-800 hover:bg-gray-700 hover:text-white"
+              onclick="setUrlParameter('subcategory','{{subcategory.subcategory_name}}')"
+            >
               {{ subcategory.subcategory_name }}
             </a>
           </li>
@@ -64,45 +101,54 @@
       </div>
     </div>
 
-    <div class="product-cards grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      {% for product in products %}
-      {% include 'components/product-card.html' %}
+    <div
+      class="product-cards grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
+    >
+      {% for product in products %} {% include 'components/product-card.html' %}
       {% endfor %}
     </div>
-    
+
     <div class="mt-10 flex justify-center gap-2 text-sm font-bold md:mt-14">
       {% if page_obj.has_previous %}
-      <a href="?page={{ page_obj.previous_page_number }}"
-        class="flex items-center rounded px-4 py-2 transition-colors duration-300 hover:bg-zinc-700 hover:text-white text-zinc-700">
+      <a
+        href="?page={{ page_obj.previous_page_number }}"
+        class="flex items-center rounded px-4 py-2 text-gray-700 transition-colors duration-300 hover:bg-gray-700 hover:text-white"
+      >
         <i class="ti ti-arrow-left font-bold"></i>
       </a>
       {% else %}
-      <a href="#" class="flex cursor-not-allowed items-center rounded px-4 py-2 text-zinc-400">
+      <a
+        href="#"
+        class="flex cursor-not-allowed items-center rounded px-4 py-2 text-gray-400"
+      >
         <i class="ti ti-arrow-left font-bold"></i>
       </a>
-      {% endif %}
-
-      {% for page_number in page_obj.paginator.page_range %}
-      {% if page_obj.number == page_number %}
-      <a class="items-center rounded px-4 py-2 duration-300 bg-zinc-700 text-white sm:flex">
+      {% endif %} {% for page_number in page_obj.paginator.page_range %} {% if
+      page_obj.number == page_number %}
+      <a
+        class="items-center rounded bg-gray-700 px-4 py-2 text-white duration-300 sm:flex"
+      >
         {{ page_number }}
       </a>
       {% else %}
-      <a href="?page={{ page_number }}"
-        class="items-center rounded px-4 py-2 text-zinc-700 transition-colors duration-300 hover:bg-zinc-700 hover:text-white sm:flex">
+      <a
+        href="?page={{ page_number }}"
+        class="items-center rounded px-4 py-2 text-gray-700 transition-colors duration-300 hover:bg-gray-700 hover:text-white sm:flex"
+      >
         {{ page_number }}
       </a>
-      {% endif %}
-      {% endfor %}
-
-
-      {% if page_obj.has_next %}
-      <a href="?page={{ page_obj.next_page_number }}"
-        class="flex items-center rounded px-4 py-2 transition-colors duration-300 hover:bg-zinc-700 hover:text-white text-zinc-700">
+      {% endif %} {% endfor %} {% if page_obj.has_next %}
+      <a
+        href="?page={{ page_obj.next_page_number }}"
+        class="flex items-center rounded px-4 py-2 text-gray-700 transition-colors duration-300 hover:bg-gray-700 hover:text-white"
+      >
         <i class="ti ti-arrow-right font-bold"></i>
       </a>
       {% else %}
-      <a href="#" class="flex cursor-not-allowed items-center rounded px-4 py-2 text-zinc-400">
+      <a
+        href="#"
+        class="flex cursor-not-allowed items-center rounded px-4 py-2 text-gray-400"
+      >
         <i class="ti ti-arrow-right font-bold"></i>
       </a>
       {% endif %}
@@ -110,69 +156,73 @@
   </div>
 </section>
 
-{% endblock main_content %} 
-{% block script %} 
+{% endblock main_content %} {% block script %}
 <script>
   // Define constants for required elements
-const subcategoryFilterPanel = document.getElementById('subcategory-filter-panel');
-const subcategoryFilterBtn = document.getElementById('subcategory-filter-button');
-const subcategoryOptionItems = subcategoryFilterPanel.querySelectorAll('.subcategory-option');
+  const subcategoryFilterPanel = document.getElementById(
+    "subcategory-filter-panel"
+  );
+  const subcategoryFilterBtn = document.getElementById(
+    "subcategory-filter-button"
+  );
+  const subcategoryOptionItems = subcategoryFilterPanel.querySelectorAll(
+    ".subcategory-option"
+  );
 
-// Function to get a URL parameter by name
-function getUrlParameter(name) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(name);
-}
+  // Function to get a URL parameter by name
+  function getUrlParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+  }
 
-// Function to set a URL parameter and update the URL
-function setUrlParameter(key, value) {
-  const urlParams = new URLSearchParams(window.location.search);
-  urlParams.set(key, value);
-  window.location.search = urlParams.toString();
-}
+  // Function to set a URL parameter and update the URL
+  function setUrlParameter(key, value) {
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set(key, value);
+    window.location.search = urlParams.toString();
+  }
 
-// Function to delete a URL parameter and update the URL
-function deleteUrlParameter(key) {
-  const urlParams = new URLSearchParams(window.location.search);
-  urlParams.delete(key);
-  window.location.search = urlParams.toString();
-}
+  // Function to delete a URL parameter and update the URL
+  function deleteUrlParameter(key) {
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.delete(key);
+    window.location.search = urlParams.toString();
+  }
 
-// Read the 'subcategory' parameter from the URL
-const selectedSubcategory = getUrlParameter('subcategory');
+  // Read the 'subcategory' parameter from the URL
+  const selectedSubcategory = getUrlParameter("subcategory");
 
-// Function to highlight a subcategory option
-function highlightSubcategoryOption(optionItem) {
-  optionItem.classList.add('bg-zinc-700', '!text-white');
-}
+  // Function to highlight a subcategory option
+  function highlightSubcategoryOption(optionItem) {
+    optionItem.classList.add("bg-gray-700", "!text-white");
+  }
 
-// Function to update the selected subcategory in the filter button
-function updateSelectedSubcategory(subcategory) {
-  subcategoryFilterBtn.querySelector('span').innerText = subcategory;
-}
+  // Function to update the selected subcategory in the filter button
+  function updateSelectedSubcategory(subcategory) {
+    subcategoryFilterBtn.querySelector("span").innerText = subcategory;
+  }
 
-// Initialize subcategory selection
-if (selectedSubcategory) {
-  // Highlight the selected subcategory
-  subcategoryOptionItems.forEach((optionItem) => {
-    const optionValue = optionItem.getAttribute('data-subcategory');
-    if (optionValue === selectedSubcategory) {
-      highlightSubcategoryOption(optionItem);
-    }
+  // Initialize subcategory selection
+  if (selectedSubcategory) {
+    // Highlight the selected subcategory
+    subcategoryOptionItems.forEach((optionItem) => {
+      const optionValue = optionItem.getAttribute("data-subcategory");
+      if (optionValue === selectedSubcategory) {
+        highlightSubcategoryOption(optionItem);
+      }
+    });
+
+    // Update the subcategory filter button text
+    updateSelectedSubcategory(selectedSubcategory);
+  } else {
+    // If no 'subcategory' parameter is found, highlight the first option by default
+    highlightSubcategoryOption(subcategoryOptionItems[0]);
+  }
+
+  // Toggle dropdown visibility when the button is clicked
+  subcategoryFilterBtn.addEventListener("click", function () {
+    subcategoryFilterPanel.classList.toggle("hidden");
   });
-
-  // Update the subcategory filter button text
-  updateSelectedSubcategory(selectedSubcategory);
-} else {
-  // If no 'subcategory' parameter is found, highlight the first option by default
-  highlightSubcategoryOption(subcategoryOptionItems[0]);
-}
-
-// Toggle dropdown visibility when the button is clicked
-subcategoryFilterBtn.addEventListener('click', function () {
-  subcategoryFilterPanel.classList.toggle('hidden');
-});
-
 </script>
 
 {% endblock script %}
