@@ -217,15 +217,17 @@
 
 {% with partner_company_logos as pclogos %}
 {% if pclogos %}
-<section class="mb-8 py-8 md:mb-16 md:py-16">
-  <div class="wrapper container grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-    {% for logo in pclogos %}
-    <div
-      class="aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-700 xl:aspect-[5/3]">
-      <img loading="lazy" src="{{ logo.logo.url }}" alt="partner company logo {{forloop.counter}}"
-        class="h-full w-full object-cover" />
+<section class="mb-8 py-8 md:mb-16 md:py-16 container">
+  <div id="partner-company" class="swiper">
+    <div class="swiper-wrapper">
+      {% for logo in pclogos %}
+      <div
+        class="swiper-slide w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 aspect-[2/1] border border-zinc-300 bg-white transition-all duration-300 hover:border-zinc-700 xl:aspect-[5/3]">
+        <img loading="lazy" src="{{ logo.logo.url }}" alt="partner company logo {{forloop.counter}}"
+          class="h-full w-full object-cover" />
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
 </section>
 {% endif %}

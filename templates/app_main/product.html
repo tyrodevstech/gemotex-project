@@ -45,7 +45,7 @@
           {{product.title}}
         </h2>
         <p
-          class="mt-5 md:line-clamp-4 text-sm leading-normal tracking-wider text-zinc-700 md:mt-8 md:text-base md:leading-relaxed">
+          class="mt-5 xl:line-clamp-[10] text-sm leading-normal tracking-wider text-zinc-700 md:mt-8 md:text-base md:leading-relaxed">
           {{product.details}}
         </p>
         <div class="mt-4 flex flex-wrap gap-5 md:mt-8">
@@ -82,15 +82,11 @@
     </div>
     <div class="tabs">
       <div class="flex flex-wrap gap-6 border-y border-zinc-300 py-6">
-        <a href="#description" class="tab-link">Description</a>
         <a href="#additional_infos" class="tab-link">Additional Information</a>
       </div>
       <div class="mt-8 text-sm text-zinc-700 md:text-base">
-        <div class="tab-content hidden" id="description">
-          {{product.details}}
-        </div>
-        <div class="tab-content hidden" id="additional_infos">
-          {{product.info}}
+        <div class="tab-content hidden prose prose-zinc max-w-full prose-sm md:prose-base" id="additional_infos">
+          {{product.info|safe}}
         </div>
       </div>
     </div>
@@ -160,7 +156,7 @@
   };
 
   // Initialize with the first tab active
-  switchTab("description");
+  switchTab("additional_infos");
 
   // Add click event listeners to tab links
   const tabLinks = document.querySelectorAll(".tab-link");

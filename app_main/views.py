@@ -33,7 +33,7 @@ class IndexView(TemplateView):
         context["slider_qs"] = HeaderSliderModel.objects.filter(active=True)
         context["review_qs"] = ReviewModel.objects.all()
         context["brand_gallery_obj"] = BrandGalleryModel.objects.all().first()
-        context["partner_company_logos"] = PartnerCompanyModel.objects.all()[:6]
+        context["partner_company_logos"] = PartnerCompanyModel.objects.all()
         context["info_obj"] = ShortAboutInfoModel.objects.all().first()
         context["intro_video"] = IntroVideoModel.objects.all().first()
         return context

@@ -78,7 +78,7 @@ class ProductSubcategoryAdmin(admin.ModelAdmin):
 
 
 class ContactInformationAdmin(admin.ModelAdmin):
-    list_display = ("id", "details", "phone", "email", "address", "work")
+    list_display = ("phone", "email", "address", "work")
 
     def has_add_permission(self, request):
         num_objects = self.model.objects.count()
@@ -90,11 +90,10 @@ class ContactInformationAdmin(admin.ModelAdmin):
 
 class FooterInformationAdmin(admin.ModelAdmin):
     list_display = (
-        "id",
         "details",
         "facebook_link",
         "twitter_link",
-        "instagram_link",
+        "linkedin_link",
         "youtube_link",
     )
 
@@ -145,12 +144,7 @@ admin.site.register(BrandGalleryModel, BrandGalleryAdmin)
 
 
 class PartnerCompanyAdmin(admin.ModelAdmin):
-    def has_add_permission(self, request):
-        num_objects = self.model.objects.count()
-        if num_objects >= 6:
-            return False
-        else:
-            return True
+    pass
 
 admin.site.register(PartnerCompanyModel, PartnerCompanyAdmin)
 
@@ -215,6 +209,6 @@ admin.site.register(FeaturedProductModel, FeaturedProductAdmin)
 
 
 class TermsAndConditionsAdmin(admin.ModelAdmin):
-    list_display = ("id", "title",)
+    list_display = ("title",)
 
 admin.site.register(TermsAndConditionsModel, TermsAndConditionsAdmin)

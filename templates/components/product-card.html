@@ -14,11 +14,15 @@
             class="my-3 aspect-square w-full object-cover" />
         <div class="card-infos">
             <span class="text-xs font-semibold uppercase text-zinc-600">
-                {{product.category.category_name}}
+                {{product.subcategory.subcategory_name}}
             </span>
             <h4 class="mb-1 line-clamp-1 text-xl font-semibold uppercase text-zinc-900">
                 {{product.title}}
             </h4>
+
+            <span class="text-sm font-semibold uppercase text-zinc-600">
+                {{product.category.category_name}}
+            </span>
         </div>
     </div>
 </a>

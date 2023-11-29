@@ -11,13 +11,12 @@ function hidePreloader() {
     ease: Power1.easeOut,
     opacity: 0,
     display: "none",
-    duration: 1,
+    duration: 0.5,
   });
   document.body.style.overflowY = "unset";
 }
 
-// Hide preloader on page load
-window.addEventListener("load", (event) => {
+document.addEventListener("DOMContentLoaded", (event) => {
   // Click event handler for menu toggle buttons
   $menuToggleBtns.on("click", function () {
     const $dropdownEl = $(this).parent();
@@ -63,13 +62,27 @@ window.addEventListener("load", (event) => {
     preloadImages: false,
     lazy: true,
     centeredSlides: true,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-    },
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
+    },
+    keyboard: true,
+  });
+
+  new Swiper("#partner-company", {
+    slidesPerView: "auto",
+    effect: "slide",
+    preloadImages: false,
+    loop: true,
+    lazy: true,
+    speed: 5000,
+    freeMode: true,
+    autoplay: {
+      delay: 1,
+      pauseOnMouseEnter: false,
+      disableOnInteraction: false,
+      waitForTransition: true,
+      stopOnLastSlide: false,
     },
     keyboard: true,
   });
@@ -79,9 +92,12 @@ window.addEventListener("load", (event) => {
     midClick: true,
     mainClass: "mfp-fade",
   });
+});
 
+// Hide preloader on page load
+window.addEventListener("load", (event) => {
   hidePreloader();
 });
 
-// Automatically hide preloader after 5 seconds
-setTimeout(hidePreloader, 5000);
+// Automatically hide preloader after 4.5 seconds
+setTimeout(hidePreloader, 4500);

@@ -1,6 +1,8 @@
+@import './_customize-scrollbar.scss';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 body {
   // font-family: 'Mulish', sans-serif;
@@ -96,13 +98,6 @@ body {
   @apply flex w-full gap-x-5 items-center rounded-md  px-3 py-1.5 text-sm text-zinc-800 hover:bg-zinc-100 focus:ring-2 focus:ring-blue-500;
 }
 
-.splide__slide {
-  @apply relative;
-  img {
-    @apply absolute inset-0 -z-10;
-  }
-}
-
 .autoplay-progress {
   position: absolute;
   right: 16px;
@@ -136,7 +131,9 @@ body {
 .swiper-pagination-bullet-active {
   @apply bg-zinc-900;
 }
-
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+}
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {

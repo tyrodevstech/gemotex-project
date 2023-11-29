@@ -23,6 +23,7 @@ handler404 = "app_main.views.custom_page_not_found_view"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path("", include("app_main.urls", "app_main")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
