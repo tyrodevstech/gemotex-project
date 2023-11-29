@@ -78,7 +78,7 @@ class ProductSubcategoryAdmin(admin.ModelAdmin):
 
 
 class ContactInformationAdmin(admin.ModelAdmin):
-    list_display = ("id", "details", "phone", "email", "address", "work")
+    list_display = ("phone", "email", "address", "work",)
 
     def has_add_permission(self, request):
         num_objects = self.model.objects.count()
@@ -215,6 +215,6 @@ admin.site.register(FeaturedProductModel, FeaturedProductAdmin)
 
 
 class TermsAndConditionsAdmin(admin.ModelAdmin):
-    list_display = ("id", "title",)
+    list_display = ("title", "id",)
 
 admin.site.register(TermsAndConditionsModel, TermsAndConditionsAdmin)
