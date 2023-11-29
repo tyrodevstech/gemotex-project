@@ -1,9 +1,9 @@
-{% extends 'base.html' %} 
-{% load static %} 
+{% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Products | {% endblock title %} 
-{% block ogtitle %}Products | {% endblock ogtitle %} 
-{% block twittertitle %}Products | {% endblock twittertitle %} 
+{% block title %}Products | {% endblock title %}
+{% block ogtitle %}Products | {% endblock ogtitle %}
+{% block twittertitle %}Products | {% endblock twittertitle %}
 
 {% block main_content %}
 <div class="breadcrumbs container pt-8">
@@ -88,8 +88,8 @@
       <a href="#" class="flex cursor-not-allowed items-center rounded px-4 py-2 text-zinc-400">
         <i class="ti ti-arrow-left font-bold"></i>
       </a>
-      {% endif %} 
-      {% for page_number in page_obj.paginator.page_range %} 
+      {% endif %}
+      {% for page_number in page_obj.paginator.page_range %}
       {% if page_obj.number == page_number %}
       <a class="items-center rounded bg-zinc-700 px-4 py-2 text-white duration-300 sm:flex">
         {{ page_number }}
@@ -99,8 +99,8 @@
         class="items-center rounded px-4 py-2 text-zinc-700 transition-colors duration-300 hover:bg-zinc-700 hover:text-white sm:flex">
         {{ page_number }}
       </a>
-      {% endif %} 
-      {% endfor %} 
+      {% endif %}
+      {% endfor %}
       {% if page_obj.has_next %}
       <a href="?page={{ page_obj.next_page_number }}"
         class="flex items-center rounded px-4 py-2 text-zinc-700 transition-colors duration-300 hover:bg-zinc-700 hover:text-white">

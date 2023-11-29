@@ -37,30 +37,40 @@ class ProductModelAdmin(admin.ModelAdmin):
     # Add the inline for ProductImagesModel
     inlines = [ProductImagesAdmin]
 
-
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "category":
-            kwargs["queryset"] = ProductCategoryModel.objects.all()  # Replace YourAuthorModel with your actual Author model
+            kwargs[
+                "queryset"
+            ] = (
+                ProductCategoryModel.objects.all()
+            )  # Replace YourAuthorModel with your actual Author model
             kwargs["empty_label"] = "Select a category"  # Customize the empty label
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def get_urls(self):
         urls = super().get_urls()
         custom_urls = [
-            path('load_subcategories/', self.load_subcategories, name='load_subcategories'),
+            path(
+                "load_subcategories/",
+                self.load_subcategories,
+                name="load_subcategories",
+            ),
         ]
         return custom_urls + urls
-    
+
     def load_subcategories(self, request):
-        category_id = request.GET.get('category_id')
+        category_id = request.GET.get("category_id")
         subcategories = ProductSubcategoryModel.objects.filter(category_id=category_id)
-        data = [{'id': subcategory.id, 'name': subcategory.subcategory_name} for subcategory in subcategories]
-        return JsonResponse({'subcategories': data})
-    
+        data = [
+            {"id": subcategory.id, "name": subcategory.subcategory_name}
+            for subcategory in subcategories
+        ]
+        return JsonResponse({"subcategories": data})
+
     class Media:
         js = (
-            'https://code.jquery.com/jquery-3.6.0.min.js',  # Replace with the appropriate jQuery version
-            'js/chained_select.js',  # Create a JavaScript file for chained selects
+            "https://code.jquery.com/jquery-3.6.0.min.js",  # Replace with the appropriate jQuery version
+            "js/chained_select.js",  # Create a JavaScript file for chained selects
         )
 
 
@@ -136,9 +146,14 @@ class BrandGalleryAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "product":
-            kwargs["queryset"] = ProductModel.objects.all()  # Replace YourAuthorModel with your actual Author model
+            kwargs[
+                "queryset"
+            ] = (
+                ProductModel.objects.all()
+            )  # Replace YourAuthorModel with your actual Author model
             kwargs["empty_label"] = "Select a product"  # Customize the empty label
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
 
 admin.site.register(BrandGalleryModel, BrandGalleryAdmin)
 
@@ -146,8 +161,8 @@ admin.site.register(BrandGalleryModel, BrandGalleryAdmin)
 class PartnerCompanyAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(PartnerCompanyModel, PartnerCompanyAdmin)
 
+admin.site.register(PartnerCompanyModel, PartnerCompanyAdmin)
 
 
 class ShortAboutInfoAdmin(admin.ModelAdmin):
@@ -158,8 +173,8 @@ class ShortAboutInfoAdmin(admin.ModelAdmin):
         else:
             return True
 
-admin.site.register(ShortAboutInfoModel, ShortAboutInfoAdmin)
 
+admin.site.register(ShortAboutInfoModel, ShortAboutInfoAdmin)
 
 
 class IntroVideoAdmin(admin.ModelAdmin):
@@ -170,11 +185,13 @@ class IntroVideoAdmin(admin.ModelAdmin):
         else:
             return True
 
+
 admin.site.register(IntroVideoModel, IntroVideoAdmin)
 
 
 class AboutCardAdmin(admin.ModelAdmin):
     list_display = ("sub_title", "title")
+
 
 admin.site.register(AboutCardModel, AboutCardAdmin)
 
@@ -186,6 +203,7 @@ class AboutVideoAdmin(admin.ModelAdmin):
             return False
         else:
             return True
+
 
 admin.site.register(AboutVideoModel, AboutVideoAdmin)
 
@@ -200,15 +218,25 @@ class FeaturedProductAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "product":
-            kwargs["queryset"] = ProductModel.objects.all()  # Replace YourAuthorModel with your actual Author model
-            kwargs["empty_label"] = "Select a featured product"  # Customize the empty label
+            kwargs[
+                "queryset"
+            ] = (
+                ProductModel.objects.all()
+            )  # Replace YourAuthorModel with your actual Author model
+            kwargs[
+                "empty_label"
+            ] = "Select a featured product"  # Customize the empty label
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
 
 admin.site.register(FeaturedProductModel, FeaturedProductAdmin)
 
 
-
 class TermsAndConditionsAdmin(admin.ModelAdmin):
-    list_display = ("title",)
+    list_display = (
+        "title",
+        "id",
+    )
+
 
 admin.site.register(TermsAndConditionsModel, TermsAndConditionsAdmin)
