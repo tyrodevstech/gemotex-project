@@ -3186,18 +3186,6 @@ input[type="number"]::-webkit-outer-spin-button {
   .md\:mt-8 {
     margin-top: 2rem;
   }
-  .md\:line-clamp-4 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-  }
-  .md\:line-clamp-\[8\] {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 8;
-  }
   .md\:hidden {
     display: none;
   }
@@ -3434,12 +3422,6 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 @media (min-width: 1200px) {
-  .xl\:line-clamp-\[8\] {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 8;
-  }
   .xl\:line-clamp-\[10\] {
     overflow: hidden;
     display: -webkit-box;
